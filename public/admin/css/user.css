@@ -1,0 +1,115 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  margin-bottom: 0;
+  height: 70px;
+  background-color: #ae252c;
+}
+.merah {
+  background-color: #ae252c;
+  color: #fff;
+}
+
+.sidebar {
+  height: 100vh;
+  position: fixed;
+  top: 56px;
+  left: -250px;
+  width: 250px;
+  padding-top: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.show {
+  left: 0;
+}
+
+.nav-link {
+  color: white !important;
+}
+.nav-item {
+  margin: 0px -15px 0px -15px;
+  padding: 8px 5px;
+}
+
+.nav-item.active {
+  background-color: #ae252c !important;
+}
+
+.nav-item:hover {
+  background-color: #d28181 !important;
+}
+
+.main-content {
+  margin-top: 70px;
+  margin-right: 70px;
+}
+
+.tambah-search {
+  margin-top: 20px;
+}
+
+.table thead th {
+  background-color: #ae252c;
+  color: white;
+}
+
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+@media (min-width: 992px) {
+  .sidebar {
+    left: 0;
+  }
+
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+.footer {
+  margin-top: 50px;
+}
+.copyright {
+  text-align: center;
+}
+.table {
+  text-align: center;
+}
+
+.btn-aksi .btn-sm {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 1000px) {
+  .btn-aksi .btn-sm {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+.btn-sm a {
+  text-decoration: none;
+  color: white;
+}
+
+.form-group label {
+  font-weight: 300;
+}
+.tambah-user {
+  background-color: #ae252c;
+  color: white;
+}
+
+.tambah-user:hover {
+  background-color: #c87a7a;
+  color: white;
+}
+
+form {
+  margin-top: 20px;
+}

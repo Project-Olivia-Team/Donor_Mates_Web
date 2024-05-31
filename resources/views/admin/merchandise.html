@@ -1,244 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
-    />
-    <link rel="stylesheet" href="../css/merchandise.css" />
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <button
-        class="navbar-toggler"
-        type="button"
-        aria-controls="sidebarMenu"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand ml-2" href="#">LOGO</a>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="user.html">Manajemen User</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="donor.html">Manajemen Donor Darah</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="berita.html">Manajemen Berita</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="merchandise.html"
-                >Manajemen Merchandise</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../../guest/html/login.html"
-                >Sign out</a
-              >
-            </li>
-          </ul>
-        </nav>
-        <main class="main-content col-lg-9 ml-sm-auto col-md-9 pt-3 px-4">
-          <h2 class>Manajemen Merchandise</h2>
-          <div class="tambah-search d-flex justify-content-between mb-3">
-            <a href="tambahmerchandise.html">
-              <button class="btn merah">Tambah merchandise</button></a
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Admin Dashboard</title>
+        <link
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
+        />
+        <link rel="stylesheet" href="admin/css/merchandise.css" />
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+            <button
+                class="navbar-toggler"
+                type="button"
+                aria-controls="sidebarMenu"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
             >
-            <div class="input-group" style="width: 300px">
-              <input
-                type="text"
-                id="customSearchBox"
-                class="form-control"
-                placeholder="Search"
-              />
-              <div class="input-group-append">
-                <button class="btn merah" type="button" id="customSearchButton">
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
-          <table id="userTable" class="table table-bordered">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama produk</th>
-                <th>Gambar</th>
-                <th>Harga</th>
-                <th>Stock</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Baju</td>
-                <td>
-                  <img src="../../img/baju.jpg" alt="img" class="img-fluid" />
-                </td>
-                <td>Rp50.000</td>
-                <td>100</td>
-                <td class="btn-aksi">
-                  <a href="editmerchandise.html"
-                    ><button class="btn btn-primary btn-sm">Edit</button></a
-                  >
-                  <a href=""
-                    ><button class="btn merah btn-sm">Delete</button></a
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ml-2" href="#">LOGO</a>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="user.html"
+                                >Manajemen User</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="donor.html"
+                                >Manajemen Donor Darah</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="berita.html"
+                                >Manajemen Berita</a
+                            >
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="merchandise.html"
+                                >Manajemen Merchandise</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="../../guest/html/login.html"
+                                >Sign out</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+                <main
+                    class="main-content col-lg-9 ml-sm-auto col-md-9 pt-3 px-4"
+                >
+                    <h2 class>Manajemen Merchandise</h2>
+                    <div
+                        class="tambah-search d-flex justify-content-between mb-3"
+                    >
+                        <a href="tambahmerchandise.html">
+                            <button class="btn merah">
+                                Tambah merchandise
+                            </button></a
+                        >
+                        <div class="input-group" style="width: 300px">
+                            <input
+                                type="text"
+                                id="customSearchBox"
+                                class="form-control"
+                                placeholder="Search"
+                            />
+                            <div class="input-group-append">
+                                <button
+                                    class="btn merah"
+                                    type="button"
+                                    id="customSearchButton"
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <table id="userTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama produk</th>
+                                <th>Gambar</th>
+                                <th>Harga</th>
+                                <th>Stock</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>Baju</td>
+                                <td>
+                                    <img
+                                        src="../../img/baju.jpg"
+                                        alt="img"
+                                        class="img-fluid"
+                                    />
+                                </td>
+                                <td>Rp50.000</td>
+                                <td>100</td>
+                                <td class="btn-aksi">
+                                    <a href="editmerchandise.html"
+                                        ><button class="btn btn-primary btn-sm">
+                                            Edit
+                                        </button></a
+                                    >
+                                    <a href=""
+                                        ><button class="btn merah btn-sm">
+                                            Delete
+                                        </button></a
+                                    >
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-          <footer class="footer">
-            <hr />
-            <p class="copyright">
-              &copy; 2024 Donormates. All rights reserved.
-            </p>
-          </footer>
-        </main>
-      </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../js/donor.js"></script>
-  </body>
+                    <footer class="footer">
+                        <hr />
+                        <p class="copyright">
+                            &copy; 2024 Donormates. All rights reserved.
+                        </p>
+                    </footer>
+                </main>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="../js/donor.js"></script>
+    </body>
 </html>

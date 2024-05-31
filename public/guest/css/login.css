@@ -1,0 +1,45 @@
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+.login-form,
+.register-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+  background-image: url(../../img/bg\ blood.png);
+}
+
+.form-container {
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.login-image,
+.register-image {
+  background-color: #ae252c;
+  background-image: url(../../img/login.png);
+  background-size: coverS;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-image img,
+.register-image img {
+  border-radius: 15px;
+  max-width: 80%;
+}
+
+.btn {
+  background-color: #ae252c;
+  color: #fff;
+}
