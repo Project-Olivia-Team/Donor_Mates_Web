@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
     />
-    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../../../public/admin/css/index.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -126,6 +126,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="admin/js/index.js"></script>
   </body>
 </html>
