@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
     />
-    <link rel="stylesheet" href="../../../public/admin/css/index.css" />
+    <link rel="stylesheet" href="admin/css/index.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
