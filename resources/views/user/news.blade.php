@@ -56,25 +56,18 @@
     <div class="container mt-5 pt-5">
       <h2 class="text-center mb-5">Berita Donor Darah</h2>
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card news-card">
-            <img
-              src="../../img/donor.jpg"
-              alt="News Image"
-              class="card-img-top"
-            />
-            <div class="card-body">
-              <p class="card-text">
-                Lorem ipsum dolor sit amet consectetur. Tempus augue turpis
-                placerat eget fringilla vitae sit scelerisque phasellus.
-              </p>
-
-              <div class="text-right">
-                <a href="detailberita.html" class="btn btn-link">Read more</a>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card news-card">
+                  <img src="../../img/donor.jpg" alt="News Image" class="card-img-top" />
+                  <div class="card-body">
+                      <p class="card-text">{{ $berita->judul }}</p>
+                      <p class="card-text">{{ $berita->isi_berita }}</p>
+                      <div class="text-right">
+                          <a href="{{ route('news.show', $berita->id) }}" class="btn btn-link">Read more</a>
+                      </div>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
 
         <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
           <div class="card news-card">

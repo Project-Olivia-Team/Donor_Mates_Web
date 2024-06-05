@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('form_donor', function (Blueprint $table) {
             $table->id();
-            $table->
             $table->timestamps();
         });
     }
