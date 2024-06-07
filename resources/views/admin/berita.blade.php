@@ -45,12 +45,12 @@
                             >
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="berita.html"
+                            <a class="nav-link" href="/admin/berita"
                                 >Manajemen Berita</a
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="merchandise.html"
+                            <a class="nav-link" href="/admin/merchandise"
                                 >Manajemen Merchandise</a
                             >
                         </li>

@@ -10,8 +10,7 @@ class BeritaController extends Controller
     public function index()
     {
         $beritas = Berita::all(); // Mengambil semua data berita dari database
-
-        return view('admin.berita' ,compact('beritas'));
+        return view('admin.berita', compact('beritas'));
     }
 
     public function store(Request $request)
@@ -24,7 +23,6 @@ class BeritaController extends Controller
             'isi_berita' => 'required',
         ]);
 
-        // Handle file upload
         if ($request->hasFile('gambar')) {
             $destinationPath = 'images/';
             $filename = date('YmdHis') . "." . $request->gambar->getClientOriginalExtension();
@@ -45,54 +43,47 @@ class BeritaController extends Controller
             'penulis' => 'required|string|max:255',
             'isi_berita' => 'required',
         ]);
-    
-        // Cek apakah pengguna mengunggah gambar baru
+
         if ($request->hasFile('gambar')) {
-            // Hapus gambar lama
             if (file_exists(public_path($berita->gambar))) {
                 unlink(public_path($berita->gambar));
             }
-    
-            // Simpan gambar baru
             $destinationPath = 'images/';
             $filename = date('YmdHis') . "." . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path($destinationPath), $filename);
             $validated['gambar'] = "$destinationPath$filename";
         }
-    
+
         $berita->update($validated);
-    
+
         return redirect()->route('admin.berita')->with('success', 'Berita berhasil diperbarui');
     }
-    
+
     public function edit($id)
     {
-        // Mengambil data berita berdasarkan ID
         $berita = Berita::findOrFail($id);
-
-        // Mengembalikan data dalam format JSON
         return response()->json($berita);
     }
 
     public function destroy($berita_id)
-{
-    // Temukan berita berdasarkan ID
-    $berita = Berita::findOrFail($berita_id);
+    {
+        $berita = Berita::findOrFail($berita_id);
+        if (file_exists(public_path($berita->gambar))) {
+            unlink(public_path($berita->gambar));
+        }
+        $berita->delete();
+        return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
+    }
 
-    // Hapus berita
-    $berita->delete();
+    public function showBerita()
+    {
+        $beritas = Berita::all();
+        return view('user.berita', compact('beritas'));
+    }
 
-    // Redirect atau kirimkan respons sukses
-    return redirect()->route('admin.berita')->with('success', 'Berita berhasil dihapus');
-}
-
-public function show($berita_id)
-{
-    $berita = Berita::findOrFail($berita_id);
-
-    return view('user.news', compact('berita'));
-}
-
-
-
+    public function showDetail($berita_id)
+    {
+        $berita = Berita::findOrFail($berita_id);
+        return view('user.detailberita', compact('berita'));
+    }
 }
