@@ -16,13 +16,15 @@
         <div class="col-md-6 login-form">
           <div class="form-container">
             <h2 class="text-center">Login</h2>
-            <form id="loginForm">
+            <form id="loginForm" method="POST" action="/login">
+              @csrf
               <div class="form-group">
                 <label for="email">Email</label>
                 <input
                   type="email"
                   class="form-control"
                   id="email"
+                  name="email"
                   placeholder="Email"
                   required
                 />
@@ -33,13 +35,14 @@
                   type="password"
                   class="form-control"
                   id="password"
+                  name="password"
                   placeholder="Password"
                   required
                 />
               </div>
-              <button type="submit" class="btn btn-block">Login</button>
+              <button type="submit" class="btn btn-block btn-primary">Login</button>
               <p class="text-center mt-3">
-                Belum punya akun? <a href="register.html">Register</a>
+                Belum punya akun? <a href="/register">Register</a>
               </p>
             </form>
           </div>
@@ -50,14 +53,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          alert("Login berhasil!");
-          window.location.href = "../../user/html/home.html";
-        });
-    </script>
   </body>
 </html>

@@ -3,9 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\MerchandiseController;
+<<<<<<< HEAD
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\HomeController;
+=======
+use App\Http\Controllers\AuthController;
+
+>>>>>>> b271703dde9f014f2f7cde6373b0fb8eed42f6fc
 
 /*
 |--------------------------------------------------------------------------
@@ -45,19 +50,13 @@ Route::get('/landingpage', function () {
     return view('landingpage');
 });
 
-Route::get('/login', function () {
-    return view('user.login');
-});
+
 
 Route::get('/home', function () {
     return view('user.home');
 });
 
 
-
-Route::get('/register', function () {
-    return view('user.register');
-});
 
 
 
@@ -100,6 +99,7 @@ Route::get('/admin/merchandise/{id}/edit', [MerchandiseController::class, 'edit'
 Route::delete('/admin/merchandise/{merchandise_id}', [MerchandiseController::class, 'destroy'])->name('admin.merchandise.destroy');
 Route::get('/user/merchandise', [MerchandiseController::class, 'showMerchandise'])->name('user.merchandise');
 Route::get('/user/merchandise/search', [MerchandiseController::class, 'search'])->name('user.merchandise.search');
+<<<<<<< HEAD
 Route::get('/merchandise/{id}', [MerchandiseController::class, 'showDetail'])->name('user.detailproduk');
 
 
@@ -119,3 +119,22 @@ Route::put('/admin/stock/{stock}', [StockController::class, 'update'])->name('ad
 Route::get('/admin/stock/{id}/edit', [StockController::class, 'edit']);
 Route::delete('/admin/stock/{stock_id}', [StockController::class, 'destroy'])->name('admin.stock.destroy');
 Route::get('/home', [HomeController::class, 'index'])->name('user.home');
+=======
+
+
+//Routes for Auth
+Route::get('/login', function () {
+    return view('user.login');
+});
+
+Route::get('/register', function () {
+    return view('user.register');
+});
+
+Route::post('/register', [AuthController::class, 'user.register']);
+Route::post('/login', [AuthController::class, 'user.login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::get('/home', function () {
+    return view('user.home');
+})->middleware('auth');
+>>>>>>> b271703dde9f014f2f7cde6373b0fb8eed42f6fc
