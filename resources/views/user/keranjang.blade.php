@@ -8,7 +8,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/keranjang.css" />
+    <link rel="stylesheet" href="user/css/keranjang.css" />
   </head>
   <body>
     <header class="header fixed-top">
@@ -29,16 +29,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
+                <a class="nav-link" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pendaftaran.html">Pendaftaran</a>
+                <a class="nav-link" href="/pendaftaran">Pendaftaran</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="merchandise.html">Merchandise</a>
+                <a class="nav-link" href="/user/merchandise">Merchandise</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="berita.html">Berita</a>
+                <a class="nav-link" href="/user/berita">Berita</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="profil.html">Profil</a>
@@ -116,7 +116,7 @@
           </table>
           <div class="text-right">
             <h4>Total: Rp.150.000</h4>
-            <a href="checkout.html" class="btn merah">Checkout</a>
+            <a href="/co" class="btn merah">Checkout</a>
           </div>
         </div>
       </div>

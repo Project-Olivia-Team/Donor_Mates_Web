@@ -20,6 +20,7 @@ class MerchandiseController extends Controller
             'gambar' => 'required|image',
             'harga' => 'required|numeric',
             'stock' => 'required|integer',
+            'deskripsi' => 'nullable|string',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -40,6 +41,7 @@ class MerchandiseController extends Controller
             'nama_produk' => 'required|string|max:255',
             'harga' => 'required|numeric',
             'stock' => 'required|integer',
+            'deskripsi' => 'nullable|string',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -85,4 +87,9 @@ class MerchandiseController extends Controller
         $merchandises = Merchandise::where('nama_produk', 'LIKE', "%$query%")->get();
         return view('user.merchandise', compact('merchandises'));
     }
+    public function showDetail($id)
+{
+    $merchandise = Merchandise::findOrFail($id);
+    return view('user.detailproduk', compact('merchandise'));
+}
 }

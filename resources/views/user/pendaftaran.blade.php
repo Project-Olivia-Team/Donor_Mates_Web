@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,19 +29,19 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
+                <a class="nav-link" href="/home">Home</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="pendaftaran.html">Pendaftaran</a>
+                <a class="nav-link" href="/pendaftaran">Pendaftaran</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="merchandise.html">Merchandise</a>
+                <a class="nav-link" href="/user/merchandise">Merchandise</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="berita.html">Berita</a>
+                <a class="nav-link" href="/user/berita">Berita</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="profil.html">Profil</a>
+                <a class="nav-link" href="/profile">Profil</a>
               </li>
             </ul>
           </div>
@@ -154,7 +153,7 @@
           <div class="form-group">
             <label for="ttl">TTL</label>
             <input
-              type="text"
+              type="date"
               class="form-control"
               id="ttl"
               placeholder="TTL"
@@ -185,6 +184,7 @@
             <label for="golonganDarah">Golongan Darah</label>
             <select class="form-control" id="golonganDarah" required>
               <option value="">Pilih Golongan Darah</option>
+              <option value="Belum Tahu">Belum Tahu</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
               <option value="B+">B+</option>
@@ -216,6 +216,17 @@
               required
             />
           </div>
+          <div class="form-group">
+            <label for="tgldonor">Tanggal Donor</label>
+            <input
+              type="date"
+              class="form-control"
+              id="tgldonor"
+              placeholder="Tanggal Donor"
+              required
+            />
+          </div>
+
           <div class="text-right mt-5">
             <a href="#"
               ><button type="submit" class="btn btn-custom">

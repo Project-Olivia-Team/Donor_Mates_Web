@@ -40,19 +40,16 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="donor.html"
-                                >Manajemen Donor Darah</a
-                            >
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/admin/berita"
-                                >Manajemen Berita</a
-                            >
+                            <a class="nav-link" href="/admin/donor">Manajemen Donor Darah</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/merchandise"
-                                >Manajemen Merchandise</a
-                            >
+                            <a class="nav-link" href="/admin/stock">Manajemen Stock Darah</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/berita">Manajemen Berita</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/merchandise">Manajemen Merchandise</a>
                         </li>
                         <li class="nav-item">
                             <a

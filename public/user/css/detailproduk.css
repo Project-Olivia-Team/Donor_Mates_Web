@@ -1,0 +1,94 @@
+body {
+    background-color: #fff;
+}
+
+.header {
+    background-color: #ae252c;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    background-color: #ae252c;
+    color: white;
+    padding: 10px 0;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 450;
+    margin: 0px 10px;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #000;
+}
+
+.navbar-nav .nav-item .nav-link button {
+    color: white;
+    background-color: #ae252c;
+    border: none;
+    border-radius: 20px;
+    padding: 4px 25px;
+    font-size: 15px;
+    font-weight: 450;
+    text-align: center;
+}
+
+.nav-item.active .nav-link {
+    border-bottom: 3px solid white;
+}
+
+.navbar-nav .nav-item.active .nav-link {
+    color: white;
+}
+
+.footer .footer-column {
+    margin-bottom: 20px;
+}
+
+.footer .footer-column h4 {
+    margin-bottom: 15px;
+}
+
+.footer .footer-column p {
+    margin-bottom: 10px;
+}
+
+.footer .social-media a {
+    margin-right: 15px;
+    color: white;
+    font-size: 24px;
+}
+
+.footer .social-media a:hover {
+    color: #ddd;
+}
+
+.footer .copyright {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.btn {
+    background-color: #ae252c;
+    color: white;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #900000;
+    color: white;
+}

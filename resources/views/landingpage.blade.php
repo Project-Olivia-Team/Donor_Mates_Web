@@ -34,7 +34,7 @@
             <ul class="navbar-nav ml-auto">
               
               <li class="nav-item">
-                <a class="nav-link b" href="login.html"
+                <a class="nav-link b" href="/login"
                   ><button>Login</button></a
                 >
               </li>

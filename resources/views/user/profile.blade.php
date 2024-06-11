@@ -29,19 +29,19 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link" href="home.html">Home</a>
+                <a class="nav-link" href="/home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="pendaftaran.html">Pendaftaran</a>
+                <a class="nav-link" href="/pendaftaran">Pendaftaran</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="merchandise.html">Merchandise</a>
+                <a class="nav-link" href="/user/merchandise">Merchandise</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="berita.html">Berita</a>
+                <a class="nav-link" href="/user/berita">Berita</a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="profil.html">Profil</a>
+                <a class="nav-link" href="/profile">Profil</a>
               </li>
             </ul>
           </div>
