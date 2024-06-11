@@ -16,13 +16,15 @@
         <div class="col-md-6 register-form">
           <div class="form-container">
             <h2 class="text-center">Register</h2>
-            <form id="registerForm">
+            <form id="registerForm" method="POST" action="/register">
+              @csrf
               <div class="form-group">
                 <label for="name">Nama</label>
                 <input
                   type="text"
                   class="form-control"
                   id="name"
+                  name="name"
                   placeholder="Nama"
                   required
                 />
@@ -33,6 +35,7 @@
                   type="email"
                   class="form-control"
                   id="email"
+                  name="email"
                   placeholder="Email"
                   required
                 />
@@ -43,6 +46,7 @@
                   type="password"
                   class="form-control"
                   id="password"
+                  name="password"
                   placeholder="Password"
                   required
                 />
@@ -50,7 +54,7 @@
 
               <div class="form-group">
                 <label for="bloodType">Golongan Darah</label>
-                <select class="form-control" id="bloodType" required>
+                <select class="form-control" id="bloodType" name="bloodType" required>
                   <option value="">Pilih Golongan Darah</option>
                   <option value="A+">A+</option>
                   <option value="A-">A-</option>
@@ -62,9 +66,9 @@
                   <option value="AB-">AB-</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-block">Register</button>
+              <button type="submit" class="btn btn-block btn-primary">Register</button>
               <p class="text-center mt-3">
-                Sudah punya akun? <a href="login.html">Login</a>
+                Sudah punya akun? <a href="/login">Login</a>
               </p>
             </form>
           </div>
@@ -75,14 +79,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-      document
-        .getElementById("registerForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
-          alert("Register berhasil!");
-          window.location.href = "login.html";
-        });
-    </script>
   </body>
 </html>
