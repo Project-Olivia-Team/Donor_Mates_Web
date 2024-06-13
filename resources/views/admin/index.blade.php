@@ -12,7 +12,7 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
     />
-    <link rel="stylesheet" href="{{ asset('admin/css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/index.css') }}" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -29,40 +29,37 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
+        <nav id="sidebarMenu" class="col-lg-3 col-md-3 sidebar bg-danger">
           <ul class="nav flex-column">
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.donor') }}">Manajemen Donor Darah</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.stock') }}">Manajemen Stock Darah</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('admin.merchandise') }}">Manajemen Merchandise</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="{{ route('logout') }}"
-    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-    Sign out
-    </a>
-    
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-    </form>
-    
-              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.donor') }}">Manajemen Donor Darah</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.stock') }}">Manajemen Stock Darah</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('admin.merchandise') }}">Manajemen Merchandise</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                Sign out
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </li>
           </ul>
-      </nav>
-        <div clas
+        </nav>
         <main class="main-content col-lg-9 ml-sm-auto col-md-9 pt-3 px-4">
           <div class="row">
             <div class="col-md-12">
@@ -74,7 +71,6 @@
               </div>
             </div>
           </div>
-
           <footer class="footer">
             <hr />
             <p class="copyright">

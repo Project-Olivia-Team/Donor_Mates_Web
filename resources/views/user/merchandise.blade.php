@@ -62,8 +62,8 @@
                     <div class="card product-card">
                         <img src="{{ asset($merchandise->gambar) }}" alt="Product Image" class="card-img-top" />
                         <div class="card-body text-center">
-                            <h5 class="card-title">{{ $merchandise->nama_produk }}</h5>
-                            <p class="card-text">Rp. {{ $merchandise->harga }}</p>
+                            <h5 class="card-title mt-2">{{ $merchandise->nama_produk }}</h5>
+                            <p class="card-text mt-2">Rp. {{ $merchandise->harga }}</p>
                         </div>
                     </div>
                 </a>

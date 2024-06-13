@@ -53,7 +53,7 @@
             <main class="main-content col-lg-9 ml-sm-auto col-md-9 pt-3 px-4">
                 <h2>Manajemen Merchandise</h2>
                 <div class="d-flex justify-content-between mb-3">
-                    <button class="btn btn-danger" data-toggle="modal" data-target="#tambahMerchandiseModal">Tambah Merchandise</button>
+                    <button class="btn merah" data-toggle="modal" data-target="#tambahMerchandiseModal">Tambah Merchandise</button>
                 </div>
                 <table id="merchandiseTable" class="table table-bordered">
                     <thead>

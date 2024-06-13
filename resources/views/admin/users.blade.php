@@ -65,7 +65,7 @@
                     </div>
                 @endif
                 <div class="mb-3">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addUserModal">Tambah User</button>
+                    <button class="btn merah" data-toggle="modal" data-target="#addUserModal">Tambah User</button>
                 </div>
                 <table id="userTable" class="table table-bordered">
                     <thead>
