@@ -7,6 +7,9 @@ use App\Models\User;
 use App\Models\Donor;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
+
 
 class UserController extends Controller
 {
@@ -18,7 +21,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -33,27 +36,29 @@ class UserController extends Controller
             'bloodType' => $request->bloodType,
             'role' => $request->role,
         ]);
-
+    
         return redirect()->route('admin.users')->with('success', 'User created successfully.');
     }
+    
 
-    public function update(Request $request, User $user)
+
+
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'bloodType' => 'required|string',
-            'role' => 'required|string|in:user,admin',
+            'role' => 'required|string',
         ]);
     
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->filled('password') ? Hash::make($request->password) : $user->password,
-            'bloodType' => $request->bloodType,
-            'role' => $request->role,
-        ]);
+        $user = User::findOrFail($id);
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->bloodType = $validatedData['bloodType'];
+        $user->role = $validatedData['role'];
+    
+        $user->save();
     
         return redirect()->route('admin.users')->with('success', 'User updated successfully.');
     }

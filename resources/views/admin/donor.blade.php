@@ -22,7 +22,7 @@
             <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
@@ -71,7 +71,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $donor->nama }}</td>
                             <td>{{ $donor->gol_darah }}</td>
-                            <td>{{ $donor->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $donor->tgl_donor }}</td>
+
                             <td class="btn-aksi">
                                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editDonorModal{{ $donor->donor_id }}">Edit</button>
                                 <form action="{{ route('admin.donor.destroy', $donor->donor_id) }}" method="POST" class="d-inline">
@@ -149,8 +150,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer no-print">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                            <div class="text-right"><button type="submit" class="btn merah">Edit</button></div>
                                         </div>
                                     </form>
                                 </div>
@@ -210,8 +210,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer no-print">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        <button type="button" class="btn btn-primary" onclick="handlePrint('{{ $donor->donor_id }}')">Cetak</button>
+                                        <div class="text-right"><button type="button" class="btn merah" onclick="handlePrint('{{ $donor->donor_id }}')">Cetak</button></div>
                                     </div>
                                 </div>
                             </div>
@@ -288,8 +287,7 @@
                       </div>
                     </div>
                     <div class="modal-footer no-print">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <div class="text-right"><button type="submit" class="btn merah">Simpan</button></div>
                     </div>
                 </form>
             </div>
@@ -319,31 +317,45 @@
         }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-	var sidebarToggle = document.querySelector(".navbar-toggler");
-	var sidebar = document.querySelector("#sidebarMenu");
+       document.addEventListener("DOMContentLoaded", function () {
+    var sidebarToggle = document.querySelector(".navbar-toggler");
+    var sidebar = document.querySelector("#sidebarMenu");
 
-	sidebarToggle.addEventListener("click", function () {
-		sidebar.classList.toggle("show");
-	});
+    sidebarToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("show");
+    });
 
-	var table = $("#userTable").DataTable({
-		dom: 't<"bottom"p>',
-		pageLength: 10,
-		paging: true,
-		info: false,
-	});
+    $.ajax({
+        url: "{{ route('admin.getDonorData') }}",
+        method: 'GET',
+        success: function(data) {
+            var ctx = document.getElementById('donorChart').getContext('2d');
+            var donorChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.month + ' ' + item.year),
+                    datasets: [{
+                        label: 'Jumlah Pendonor',
+                        data: data.map(item => item.count),
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    });
 
-	$("#customSearchButton").on("click", function () {
-		table.search($("#customSearchBox").val()).draw();
-	});
-
-	$("#customSearchBox").on("keypress", function (e) {
-		if (e.which === 13) {
-			table.search(this.value).draw();
-		}
-	});
+    
 });
+
     </script>
 </body>
 </html>

@@ -22,7 +22,7 @@
             <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
@@ -123,8 +123,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+       <div class="text-right">                 <button type="submit" class="btn merah">Tambah</button></div>
+       
                     </div>
                 </form>
             </div>
@@ -165,8 +165,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+         <div class="text-right"><button type="submit" class="btn merah">Edit</button></div>
+                        
                     </div>
                 </form>
             </div>

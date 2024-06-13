@@ -1,4 +1,4 @@
-<?php
+<?php // app/Http/Controllers/DonorController.php
 
 namespace App\Http\Controllers;
 
@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Donor;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class DonorController extends Controller
 {
@@ -79,6 +80,7 @@ class DonorController extends Controller
 
         return redirect()->route('user.pendaftaran')->with('success', 'Pendaftaran berhasil');
     }
+
     public function update(Request $request, $donor_id)
     {
         $request->validate([
@@ -99,4 +101,21 @@ class DonorController extends Controller
 
         return redirect()->route('admin.donor')->with('success', 'Donor berhasil diperbarui');
     }
+
+    public function getDonorData()
+    {
+        $donorData = Donor::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('year', 'month')
+            ->get()
+            ->map(function($item) {
+                return [
+                    'year' => $item->year,
+                    'month' => Carbon::create()->month($item->month)->format('F'),
+                    'count' => $item->count
+                ];
+            });
+
+        return response()->json($donorData);
+    }
 }
+ ?>

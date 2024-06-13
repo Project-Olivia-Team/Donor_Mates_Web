@@ -23,7 +23,8 @@ class Donor extends Model
         'no_hp',
         'tgl_donor'
     ];
-    protected $dates = [
-        'tgl_donor'
+
+    protected $casts = [
+        'tgl_donor',
     ];
 }
