@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class AuthController extends Controller
     // Method untuk menampilkan form register
     public function registerForm()
     {
-        return view('auth.register');
+        return view('register');
     }
 
     // Method untuk menangani proses registrasi
@@ -27,13 +28,20 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), // Menggunakan Hash Bcrypt
             'bloodType' => $request->bloodType,
+            'role' => 'user', // Default role
         ]);
 
         $user->save();
 
         return redirect('/login')->with('success', 'Registration successful. Please login.');
+    }
+
+    // Method untuk menampilkan form login
+    public function loginForm()
+    {
+        return view('login');
     }
 
     // Method untuk menangani proses login
@@ -46,14 +54,32 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        $user = User::where('email', $credentials['email'])->first();
+
+        if ($user) {
+            if (!Hash::check($credentials['password'], $user->password)) {
+                // Password tidak cocok dengan hash, periksa apakah password belum di-hash
+                if ($user->password === $credentials['password']) {
+                    // Hash password dan simpan ke database
+                    $user->password = Hash::make($credentials['password']);
+                    $user->save();
+                } else {
+                    return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+                }
+            }
+
+            Auth::login($user, $request->remember);
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+
+            // Redirect berdasarkan role user
+            if ($user->role == 'admin') {
+                return redirect()->intended('/admin/dashboard');
+            } else {
+                return redirect()->intended('/user/home');
+            }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
 
     // Method untuk logout

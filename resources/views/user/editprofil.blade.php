@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Produk</title>
+    <title>Edit Profil Pengguna</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ asset('user/css/detailproduk.css') }}">
+    <link rel="stylesheet" href="{{ asset('user/css/profil.css') }}">
 </head>
 <body>
     <header class="header fixed-top">
@@ -26,13 +25,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.pendaftaran') }}">Pendaftaran</a>
                         </li>
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.merchandise') }}">Merchandise</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.berita') }}">Berita</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="{{ route('profile') }}">Profil</a>
                         </li>
                     </ul>
@@ -41,26 +40,36 @@
         </div>
     </header>
 
-    <div class="container mt-3 pt-5">
-        <div class="row mt-5">
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <img src="{{ asset($merchandise->gambar) }}" alt="Product Image" class="img-fluid product-image" />
-            </div>
-            <div class="col-lg-8 col-md-6 col-sm-12">
-                <h2>{{ $merchandise->nama_produk }}</h2>
-                <p>Rp. {{ $merchandise->harga }}</p>
-                <p>{{ $merchandise->deskripsi }}</p>
-                <form action="{{ route('add.to.cart') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="merchandise_id" value="{{ $merchandise->merchandise_id }}">
-                    <div class="form-group">
-                        <label for="quantity">Jumlah</label>
-                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1">
-                    </div>
-                    <button type="submit" class="btn merah">Beli</button>
-                </form>
-                
-                
+    <div class="container profile-container mt-5 pt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="profile-info">
+                    <h4>Edit Profil</h4>
+                    <form method="POST" action="{{ route('profile.update') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password_confirmation">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" />
+                        </div>
+                        <div class="form-group">
+                            <label for="bloodType">Golongan Darah</label>
+                            <input type="text" class="form-control" id="bloodType" name="bloodType" value="{{ $user->bloodType }}" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profil</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -69,12 +78,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 footer-column">
-                    <img src="../../img/putih.png" width="80px" />
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur. Tortor enim non congue
-                        vitae ut. In nullam etiam scelerisque tristique. Malesuada sit
-                        gravida at rutrum. Pulvinar ac eu donec nisl cras ut.
-                    </p>
+                    <h4>LOGO</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur. Tortor enim non congue vitae ut. In nullam etiam scelerisque tristique. Malesuada sit gravida at rutrum. Pulvinar ac eu donec nisl cras ut.</p>
                     <p><i class="fa fa-envelope"></i> donormates@gmail.com</p>
                     <p><i class="fa fa-whatsapp"></i> +62 7893 2213 876</p>
                     <p><i class="fa fa-phone"></i> +62 7892 6782 234</p>
@@ -88,10 +93,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="mb-0">&copy; 2024 Donormates. All rights reserved.</p>
-                </div>
+            <div class="footer-column">
+                <p class="copyright">&copy; 2024 Donormates. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -99,5 +102,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </body>
 </html>

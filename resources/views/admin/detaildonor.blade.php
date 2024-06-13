@@ -1,4 +1,3 @@
-<!-- resources/views/admin/detaildonor.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,22 +19,33 @@
             <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.html">Manajemen User</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/admin/donor">Manajemen Donor Darah</a>
+                        <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/berita">Manajemen Berita</a>
+                        <a class="nav-link" href="{{ route('admin.donor') }}">Manajemen Donor Darah</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="admin/merchandise">Manajemen Merchandise</a>
+                        <a class="nav-link" href="{{ route('admin.stock') }}">Manajemen Stock Darah</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Sign out</a>
+                        <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.merchandise') }}">Manajemen Merchandise</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}"
+   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+   Sign out
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
+
                     </li>
                 </ul>
             </nav>

@@ -7,145 +7,13 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('user/css/home.css') }}">
-    <style>
-      /* Gaya tambahan di dalam halaman */
-      .box-container {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-      }
-      .stock-container p {
-    font-size: 24px; /* Atur ukuran font */
-    font-weight: bold; /* Jadikan teks tebal */
-}
-      .box {
-          background-color: #ae252c;
-          color: white;
-          border-radius: 10px;
-          padding: 20px;
-          margin: 10px;
-          width: 100px;
-          text-align: center;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-
-      @media (max-width: 768px) {
-          .box {
-              width: 80px;
-          }
-      }
-
-      @media (max-width: 576px) {
-          .box {
-              width: 60px;
-          }
-      }
-      .chatbot-button {
-    background-color: #ae252c;
-    color: white;
-    padding: 16px;
-    border: 2px solid white;
-    cursor: pointer;
-    position: fixed;
-    bottom: 23px;
-    right: 28px;
-    border-radius: 50%;
-    font-size: 24px;
-    z-index: 1000;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.chat-popup {
-    display: none;
-    position: fixed;
-    bottom: 80px;
-    right: 15px;
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-    background-color: white;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    width: 300px;
-}
-
-.chatbot-header {
-    background-color: #ae252c;
-    color: white;
-    padding: 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.close {
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.chatbot-content {
-    padding: 18px;
-    background-color: #f9f9f9;
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.chatbot-footer {
-    padding: 12px 20px;
-    background-color: #f9f9f9;
-    display: flex;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    margin: 0;
-    border: none;
-    border-radius: 5px;
-}
-
-.send-btn {
-    width: 20%;
-    background-color: #ae252c;
-    color: white;
-    padding: 10px;
-    margin-left: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.chat-message {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 10px;
-}
-
-.user-message {
-    background-color: #e1ffc7;
-    text-align: right;
-}
-
-.bot-message {
-    background-color: #f1f1f1;
-}
-  </style>
-  </head>
+</head>
 <body>
     <header class="header fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand" href="#">
-                    <img src="../../img/putih.png" width="80px"/>
+                    <img src="{{ asset('img/putih.png') }}" width="80px"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -156,16 +24,16 @@ input[type="text"] {
                             <a class="nav-link" href="{{ route('user.home') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="pendaftaran.html">Pendaftaran</a>
+                            <a class="nav-link" href="{{ route('user.pendaftaran') }}">Pendaftaran</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="merchandise.html">Merchandise</a>
+                            <a class="nav-link" href="{{ route('user.merchandise') }}">Merchandise</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="berita.html">Berita</a>
+                            <a class="nav-link" href="{{ route('user.berita') }}">Berita</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="profil.html">Profil</a>
+                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
                         </li>
                     </ul>
                 </div>
@@ -344,59 +212,8 @@ input[type="text"] {
         </div>
     </footer>
 
-    <!-- Chatbot -->
-    <button onclick="toggleChatbot()" class="chatbot-button">
-        <i class="fa fa-comments"></i>
-    </button>
-    <div id="chatbot" class="chat-popup">
-        <div class="chatbot-header">
-            <h2 class="text-center">Matesbot</h2>
-            <span class="close" onclick="toggleChatbot()">&times;</span>
-        </div>
-        <div class="chatbot-content">
-            <div class="chat-message bot-message">
-                Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
-            </div>
-        </div>
-        <div class="chatbot-footer">
-            <input type="text" placeholder="Ketikkan pesanmu..." id="chat-input" name="message" required/>
-            <button type="button" class="send-btn" onclick="sendMessage()">Kirim</button>
-        </div>
-    </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        function toggleChatbot() {
-            var chatbot = document.getElementById("chatbot");
-            chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
-        }
-
-        function sendMessage() {
-            var inputField = document.getElementById("chat-input");
-            var message = inputField.value;
-            if (message.trim() !== "") {
-                var chatContent = document.querySelector(".chatbot-content");
-
-                var userMessage = document.createElement("div");
-                userMessage.className = "chat-message user-message";
-                userMessage.textContent = message;
-                chatContent.appendChild(userMessage);
-
-                inputField.value = "";
-
-                setTimeout(function() {
-                    var botMessage = document.createElement("div");
-                    botMessage.className = "chat-message bot-message";
-                    botMessage.textContent = "Terima kasih atas pesan Anda. Kami akan segera merespons.";
-                    chatContent.appendChild(botMessage);
-
-                    chatContent.scrollTop = chatContent.scrollHeight;
-                }, 1000);
-            }
-        }
-    </script>
 </body>
 </html>
