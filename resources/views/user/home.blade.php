@@ -212,8 +212,70 @@
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Chatbot -->
+    <button onclick="toggleChatbot()" class="chatbot-button">
+        <i class="fa fa-comments"></i>
+      </button>
+      <div id="chatbot" class="chat-popup">
+        <div class="chatbot-header">
+          <h2 class="text-center">Matesbot</h2>
+          <span class="close" onclick="toggleChatbot()">&times;</span>
+        </div>
+        <div class="chatbot-content">
+          <div class="chat-message bot-message">
+            Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
+          </div>
+        </div>
+        <div class="chatbot-footer">
+          <input
+            type="text"
+            placeholder="Ketikkan pesanmu..."
+            id="chat-input"
+            name="message"
+            required
+          />
+          <button type="button" class="send-btn" onclick="sendMessage()">
+            Kirim
+          </button>
+        </div>
+      </div>
+  
+      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+      <script>
+        function toggleChatbot() {
+          var chatbot = document.getElementById("chatbot");
+          chatbot.style.display =
+            chatbot.style.display === "block" ? "none" : "block";
+        }
+  
+        function sendMessage() {
+          var inputField = document.getElementById("chat-input");
+          var message = inputField.value;
+          if (message.trim() !== "") {
+            var chatContent = document.querySelector(".chatbot-content");
+  
+            var userMessage = document.createElement("div");
+            userMessage.className = "chat-message user-message";
+            userMessage.textContent = message;
+            chatContent.appendChild(userMessage);
+  
+            inputField.value = "";
+  
+            setTimeout(function () {
+              var botMessage = document.createElement("div");
+              botMessage.className = "chat-message bot-message";
+              botMessage.textContent =
+                "Terima kasih atas pesan Anda. Kami akan segera merespons.";
+              chatContent.appendChild(botMessage);
+  
+              chatContent.scrollTop = chatContent.scrollHeight;
+            }, 1000);
+          }
+        }
+      </script>
+    </body>
+  </html>
+  
