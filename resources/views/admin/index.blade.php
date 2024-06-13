@@ -25,13 +25,15 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand ml-2" href="#">LOGO</a>
+      <a class="navbar-brand ml-2" href="#">
+        <img src="{{ asset('img/putih.png') }}" width="80px"/>
+    </a>
     </nav>
     <div class="container-fluid">
       <div class="row">
         <nav id="sidebarMenu" class="col-lg-3 col-md-3 sidebar bg-danger">
           <ul class="nav flex-column">
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
             </li>
             <li class="nav-item">
@@ -85,5 +87,61 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('admin/js/index.js') }}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+var sidebarToggle = document.querySelector(".navbar-toggler");
+var sidebar = document.querySelector("#sidebarMenu");
+
+sidebarToggle.addEventListener("click", function () {
+  sidebar.classList.toggle("show");
+});
+
+var table = $("#userTable").DataTable({
+  dom: 't<"bottom"p>',
+  pageLength: 10,
+  paging: true,
+  info: false,
+});
+
+$("#customSearchButton").on("click", function () {
+  table.search($("#customSearchBox").val()).draw();
+});
+
+$("#customSearchBox").on("keypress", function (e) {
+  if (e.which === 13) {
+    table.search(this.value).draw();
+  }
+});
+});
+  </script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+var sidebarToggle = document.querySelector(".navbar-toggler");
+var sidebar = document.querySelector("#sidebarMenu");
+
+sidebarToggle.addEventListener("click", function () {
+sidebar.classList.toggle("show");
+});
+
+var table = $("#userTable").DataTable({
+dom: 't<"bottom"p>',
+pageLength: 10,
+paging: true,
+info: false,
+});
+
+$("#customSearchButton").on("click", function () {
+table.search($("#customSearchBox").val()).draw();
+});
+
+$("#customSearchBox").on("keypress", function (e) {
+if (e.which === 13) {
+table.search(this.value).draw();
+}
+});
+});
+</script>
   </body>
 </html>

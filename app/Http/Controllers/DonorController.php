@@ -79,4 +79,24 @@ class DonorController extends Controller
 
         return redirect()->route('user.pendaftaran')->with('success', 'Pendaftaran berhasil');
     }
+    public function update(Request $request, $donor_id)
+    {
+        $request->validate([
+            'NIK' => 'required|string|max:16',
+            'nama' => 'required|string|max:255',
+            'alamat' => 'required|string',
+            'tgl_lahir' => 'required|date',
+            'umur' => 'required|integer',
+            'berat_badan' => 'required|integer',
+            'gol_darah' => 'required|string|max:3',
+            'riwayat' => 'required|string',
+            'no_hp' => 'required|string|max:15',
+            'tgl_donor' => 'required|date',
+        ]);
+
+        $donor = Donor::findOrFail($donor_id);
+        $donor->update($request->all());
+
+        return redirect()->route('admin.donor')->with('success', 'Donor berhasil diperbarui');
+    }
 }

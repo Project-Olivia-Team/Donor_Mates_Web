@@ -25,7 +25,10 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand ml-2" href="#">LOGO</a>
+            
+            <a class="navbar-brand ml-2" href="#">
+                <img src="{{ asset('img/putih.png') }}" width="80px"/>
+            </a>
         </nav>
         <div class="container-fluid">
             <div class="row">
@@ -43,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.stock') }}">Manajemen Stock Darah</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
                         </li>
                         <li class="nav-item">
@@ -244,7 +247,33 @@
     }
 </script>
 
-<!-- Di dalam tag <script> Anda -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+var sidebarToggle = document.querySelector(".navbar-toggler");
+var sidebar = document.querySelector("#sidebarMenu");
+
+sidebarToggle.addEventListener("click", function () {
+    sidebar.classList.toggle("show");
+});
+
+var table = $("#userTable").DataTable({
+    dom: 't<"bottom"p>',
+    pageLength: 10,
+    paging: true,
+    info: false,
+});
+
+$("#customSearchButton").on("click", function () {
+    table.search($("#customSearchBox").val()).draw();
+});
+
+$("#customSearchBox").on("keypress", function (e) {
+    if (e.which === 13) {
+        table.search(this.value).draw();
+    }
+});
+});
+</script>
 
 
 

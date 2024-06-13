@@ -23,7 +23,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             'bloodType' => 'required|string',
-            'role' => 'required|string',
+            'role' => 'required|string|in:user,admin',
         ]);
 
         User::create([
@@ -44,7 +44,7 @@ class UserController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
             'bloodType' => 'required|string',
-            'role' => 'required|string',
+            'role' => 'required|string|in:user,admin',
         ]);
     
         $user->update([
@@ -97,6 +97,6 @@ class UserController extends Controller
         $user->fill($validated);
         $user->save();
 
-        return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui.');
+        return redirect()->route('user.profile')->with('success', 'Profil berhasil diperbarui.');
     }
 }

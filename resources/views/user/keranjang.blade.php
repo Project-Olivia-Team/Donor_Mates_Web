@@ -19,20 +19,36 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.home') }}">Home</a>
+                        <li class="nav-item @if(request()->routeIs('user.home')) active @endif">
+                            <a class="nav-link" href="{{ route('user.home') }}">Beranda</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.pendaftaran')) active @endif">
                             <a class="nav-link" href="{{ route('user.pendaftaran') }}">Pendaftaran</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('user.merchandise') }}">Merchandise</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('user.merchandise') || request()->routeIs('user.keranjang') || request()->routeIs('user.pesanan')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMerchandise" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Toko
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMerchandise">
+                                <a class="dropdown-item" href="{{ route('user.merchandise') }}">Merchandise</a>
+                                <a class="dropdown-item" href="{{ route('user.keranjang') }}">Keranjang</a>
+                                <a class="dropdown-item" href="{{ route('user.pesanan') }}">Pesanan</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.berita')) active @endif">
                             <a class="nav-link" href="{{ route('user.berita') }}">Berita</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('profile') || request()->routeIs('user.profile.edit')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profil
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profil Saya</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>

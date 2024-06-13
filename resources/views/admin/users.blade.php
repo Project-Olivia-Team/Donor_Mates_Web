@@ -7,20 +7,15 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('admin/css/user.css') }}">
-    
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <button
-          class="navbar-toggler"
-          type="button"
-          aria-controls="sidebarMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand ml-2" href="#">LOGO</a>
+        <a class="navbar-brand ml-2" href="#">
+            <img src="{{ asset('img/putih.png') }}" width="80px"/>
+        </a>
     </nav>
     <div class="container-fluid">
         <div class="row">
@@ -29,7 +24,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
                     </li>
                     <li class="nav-item">
@@ -46,14 +41,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
-   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-   Sign out
-</a>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Sign out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -87,59 +80,123 @@
                                 <td>{{ $user->bloodType }}</td>
                                 <td>{{ $user->role }}</td>
                                 <td>
-                                    <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">Edit</button>
-                                    <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">Delete</button>
+                                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editUserModal{{ $user->id }}">Edit</button>
+                                    <button class="btn merah btn-sm" data-toggle="modal" data-target="#deleteUserModal{{ $user->id }}">Delete</button>
                                 </td>
                             </tr>
 
-                            <!-- Edit User Modal -->
-                            <div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel{{ $user->id }}" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="editUserModalLabel{{ $user->id }}">Edit User</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="form-group">
-                                                    <label for="name">Nama</label>
-                                                    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="bloodType">Golongan Darah</label>
-                                                    <select class="form-control" id="bloodType" name="bloodType" required>
-                                                        <option value="A+" {{ $user->bloodType == 'A+' ? 'selected' : '' }}>A+</option>
-                                                        <option value="A-" {{ $user->bloodType == 'A-' ? 'selected' : '' }}>A-</option>
-                                                        <option value="B+" {{ $user->bloodType == 'B+' ? 'selected' : '' }}>B+</option>
-                                                        <option value="B-" {{ $user->bloodType == 'B-' ? 'selected' : '' }}>B-</option>
-                                                        <option value="O+" {{ $user->bloodType == 'O+' ? 'selected' : '' }}>O+</option>
-                                                        <option value="O-" {{ $user->bloodType == 'O-' ? 'selected' : '' }}>O-</option>
-                                                        <option value="AB+" {{ $user->bloodType == 'AB+' ? 'selected' : '' }}>AB+</option>
-                                                        <option value="AB-" {{ $user->bloodType == 'AB-' ? 'selected' : '' }}>AB-</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="role">Role</label>
-                                                    <select class="form-control" id="role" name="role" required>
-                                                        <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
-                                                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                                    </select>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Update User</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           <!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addUserModalLabel">Tambah User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.users.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodType">Golongan Darah</label>
+                        <select class="form-control" id="bloodType" name="bloodType" required>
+                            <option value="">Pilih Golongan Darah</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control" id="role" name="role" required>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn merah">Tambah User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit User Modal -->
+@foreach($users as $user)
+<div class="modal fade" id="editUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel{{ $user->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel{{ $user->id }}">Edit User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodType">Golongan Darah</label>
+                        <select class="form-control" id="bloodType" name="bloodType" required>
+                            <option value="A+" {{ $user->bloodType == 'A+' ? 'selected' : '' }}>A+</option>
+                            <option value="A-" {{ $user->bloodType == 'A-' ? 'selected' : '' }}>A-</option>
+                            <option value="B+" {{ $user->bloodType == 'B+' ? 'selected' : '' }}>B+</option>
+                            <option value="B-" {{ $user->bloodType == 'B-' ? 'selected' : '' }}>B-</option>
+                            <option value="O+" {{ $user->bloodType == 'O+' ? 'selected' : '' }}>O+</option>
+                            <option value="O-" {{ $user->bloodType == 'O-' ? 'selected' : '' }}>O-</option>
+                            <option value="AB+" {{ $user->bloodType == 'AB+' ? 'selected' : '' }}>AB+</option>
+                            <option value="AB-" {{ $user->bloodType == 'AB-' ? 'selected' : '' }}>AB-</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control" id="role" name="role" required>
+                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                        </select>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn merah">Edit User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
 
                             <!-- Delete User Modal -->
                             <div class="modal fade" id="deleteUserModal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel{{ $user->id }}" aria-hidden="true">
@@ -169,62 +226,7 @@
                     </tbody>
                 </table>
 
-                <!-- Add User Modal -->
-                <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addUserModalLabel">Tambah User</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="{{ route('admin.users.store') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                        <label for="name">Nama</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" name="password" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password_confirmation">Confirm Password</label>
-                                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="bloodType">Golongan Darah</label>
-                                        <select class="form-control" id="bloodType" name="bloodType" required>
-                                            <option value="">Pilih Golongan Darah</option>
-                                            <option value="A+">A+</option>
-                                            <option value="A-">A-</option>
-                                            <option value="B+">B+</option>
-                                            <option value="B-">B-</option>
-                                            <option value="O+">O+</option>
-                                            <option value="O-">O-</option>
-                                            <option value="AB+">AB+</option>
-                                            <option value="AB-">AB-</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <select class="form-control" id="role" name="role" required>
-                                            <option value="user">User</option>
-                                            <option value="admin">Admin</option>
-                                        </select>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Tambah User</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
             </main>
         </div>
     </div>

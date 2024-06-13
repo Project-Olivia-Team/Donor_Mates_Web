@@ -42,7 +42,7 @@
                                 required
                             />
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary">Login</button>
+                        <button type="submit" class="btn btn-block">Login</button>
                         <p class="text-center mt-3">
                             Belum punya akun? <a href="{{ route('register') }}">Register</a>
                         </p>
