@@ -10,7 +10,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', Auth::id())->get();
+        // Use eager loading to ensure merchandise is loaded with orders
+        $orders = Order::where('user_id', Auth::id())->with('merchandise')->get();
 
         return view('user.order', compact('orders'));
     }
