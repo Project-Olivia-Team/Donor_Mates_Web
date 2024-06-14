@@ -158,11 +158,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
     
-    //checkout
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
-    Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-    Route::get('/order', [OrderController::class, 'index'])->name('user.order');
-    Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
+    
 });
 
 
@@ -171,7 +167,10 @@ Route::get('/pesanan', [OrderController::class, 'index'])->name('user.pesanan');
 Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
-Route::post('/checkout/process', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('/order', [OrderController::class, 'index'])->name('user.order');
+    Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
+});
 
