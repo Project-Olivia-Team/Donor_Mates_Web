@@ -175,3 +175,22 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checko
 Route::post('/checkout/process', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
 
 
+
+
+
+
+// Routes for Cart
+Route::middleware(['auth'])->group(function () {
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
+    Route::get('/keranjang', [CartController::class, 'showCart'])->name('user.keranjang');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+
+    // Routes for Checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+
+    // Routes for Order
+    Route::get('/order', [OrderController::class, 'index'])->name('user.order');
+    Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
+});
