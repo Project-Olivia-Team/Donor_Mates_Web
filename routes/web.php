@@ -13,11 +13,13 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\ChatController;
+use App\Http\Controllers\BotManController;
 
 
 // Halaman Utama
 Route::get('/', function () {
-    return view('welcome');
+    return view('landingpage');
 })->name('home');
 
 // Halaman Admin Dashboard
@@ -151,6 +153,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/users/{user}/edit', [UserController::class, 'edit'])->name('admin.users.edit');
     Route::put('/admin/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::get('/admin/orders', [OrderController::class, 'adminIndex'])->name('admin.orders');
+    Route::put('/admin/orders/{id}', [OrderController::class, 'update'])->name('admin.orders.update');
+    Route::delete('/admin/orders/{id}', [OrderController::class, 'destroy'])->name('admin.orders.destroy');
+    Route::get('/admin/orders/proof/{id}', [OrderController::class, 'showProof'])->name('admin.orders.showProof');
 });
 
 // Route untuk keranjang
@@ -197,7 +203,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders');
-    Route::post('/admin/orders/approve', [AdminOrderController::class, 'approveOrder'])->name('admin.orders.approve');
-});
+
+
+
+
+
+
+Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\BotManController@handle');

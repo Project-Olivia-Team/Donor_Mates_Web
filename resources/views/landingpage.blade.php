@@ -13,12 +13,15 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <link rel="stylesheet" href="guest/css/home.css" />
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
   </head>
   <body>
     <header class="header fixed-top">
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-          <a class="navbar-brand" href="#">LOGO</a>
+          <a class="navbar-brand" href="#">
+            <img src="{{ asset('img/putih.png') }}" width="80px"/>
+        </a>
           <button
             class="navbar-toggler"
             type="button"
@@ -48,19 +51,13 @@
     <div class="hero-section">
       <div class="content text-left">
         <h1>Ikut Donor Darah, Bantu Selamatkan Nyawa</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, dolor
-          nesciunt quia dolores hic asperiores molestiae saepe quo consectetur
-          officia illum aliquid libero, doloribus, nostrum reiciendis ab!
-          Sapiente accusantium ipsam inventore suscipit explicabo! Esse sint
-          dicta libero deserunt eaque amet autem! Enim error quod autem.
-        </p>
-        <a href="#"><button>See more</button></a>
+        <p>Setiap tetes darah yang Anda sumbangkan bisa menjadi penyelamat bagi nyawa seseorang, memberikan harapan dan kesempatan baru untuk hidup. Donor darah bukan hanya tindakan kemanusiaan, tetapi juga bentuk nyata dari solidaritas dan kepedulian sosial. Bergabunglah dengan gerakan donor darah, dengan donor darah kita bisa menciptakan perubahan besar dalam kehidupan banyak orang.</p>
+      
       </div>
     </div>
     <!-- Manfaat Donor Darah -->
     <div class="container manfaat-donor my-5 text-center">
-      <h2>Apa sih manfaat donor darah?</h2>
+      <h2>Apa Sih Manfaat Donor Darah?</h2>
       <div class="row justify-content-center">
         <div class="col-lg-3 col-md-3 col-sm-6 mb-4">
           <div class="card manfaat-card">
@@ -171,93 +168,63 @@
       </div>
     </div>
 
-    <!-- TIPS -->
-    <div class="container tips my-5">
+     <!-- TIPS -->
+     <div class="container tips my-5">
       <h2 class="text-center">6 Tips Donor Darah Sehat</h2>
       <div class="row text-center">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">
-                Cukup istirahat sebelum menyumbangkan darah
-              </h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Cukup istirahat sebelum menyumbangkan darah</h5>
+                      <p class="card-text">Pastikan Anda mendapatkan tidur yang cukup sebelum mendonorkan darah. Istirahat yang cukup membantu menjaga kondisi tubuh tetap fit dan siap untuk mendonorkan darah.</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">
-                Makan tiga jam sebelum menyumbangkan darah
-              </h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Makan tiga jam sebelum menyumbangkan darah</h5>
+                      <p class="card-text">Disarankan untuk makan makanan bergizi setidaknya tiga jam sebelum mendonorkan darah. Hindari makanan berlemak tinggi dan pastikan Anda merasa kenyang namun nyaman.</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">
-                Cukup Minum Setelah dan sesudah menyumbangkan darah
-              </h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Cukup minum sebelum dan sesudah menyumbangkan darah</h5>
+                      <p class="card-text">Minum banyak air sebelum dan setelah donor darah untuk menjaga tubuh tetap terhidrasi. Hal ini membantu proses pemulihan dan mencegah terjadinya dehidrasi.</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">Beristirahat setelah mendonorkan darah</h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Beristirahat setelah mendonorkan darah</h5>
+                      <p class="card-text">Setelah mendonorkan darah, duduk dan istirahat selama beberapa menit. Jangan terburu-buru melakukan aktivitas fisik yang berat untuk memberi waktu bagi tubuh memulihkan diri.</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
+                      <p class="card-text">Sebelum mendonorkan darah, konsultasikan kondisi kesehatan Anda dengan dokter. Pastikan Anda dalam kondisi sehat dan memenuhi syarat untuk dapat melakukan donorkan darah.</p>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-          <div class="card tips-card">
-            <div class="card-body">
-              <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-              <p class="card-text">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Excepturi magnam fuga dolore ratione ea repellendus quasi eum
-                vel inventore labore!
-              </p>
-            </div>
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="card tips-card">
+                  <div class="card-body">
+                      <h5 class="card-title">Hindari aktivitas berat setelah donor darah</h5>
+                      <p class="card-text">Setelah mendonorkan darah, hindari aktivitas berat atau olahraga yang berlebihan selama setidaknya 24 jam. Tunggu terlebih dahulu dan biarkan tubuh Anda normal pulih sepenuhnya.</p>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
 
     <div class="container sponsor my-5 text-center">
-      <h2>Sponsored by</h2>
+      <h2>Disponsori Oleh</h2>
       <div class="row justify-content-center">
         <div class="col-md-2 col-sm-4 mb-4">
           <div class="sponsor-logo">

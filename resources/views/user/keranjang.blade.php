@@ -7,6 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('user/css/keranjang.css') }}">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 
 </head>
 <body>
@@ -94,7 +95,7 @@
                             <form action="{{ route('cart.remove', $item->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                <button type="submit" class="btn merah btn-sm">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -107,7 +108,7 @@
         </table>
         @if($cartItems->count() > 0)
             <div class="text-right">
-                <a href="{{ route('user.checkout') }}" class="btn btn-primary">Checkout</a>
+                <a href="{{ route('user.checkout') }}" class="btn merah">Checkout</a>
             </div>
         @endif
     </div>

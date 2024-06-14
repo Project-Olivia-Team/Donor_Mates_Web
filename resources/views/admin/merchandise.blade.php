@@ -7,6 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('admin/css/merchandise.css') }}">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -45,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        Sign out
+        Keluar
         </a>
         
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -84,7 +85,7 @@
                                 <form action="{{ route('admin.merchandise.destroy', $merchandise->merchandise_id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn merah btn-sm">Hapus</button>
+                                    <button type="submit" class="btn merah btn-sm">Delete</button>
                                 </form>
                             </td>
                         </tr>

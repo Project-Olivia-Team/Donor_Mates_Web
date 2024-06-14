@@ -7,6 +7,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('admin/css/index.css') }}">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -45,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sign out
+                            Keluar
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -64,12 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <footer class="footer">
-                    <hr />
-                    <p class="copyright">
-                        &copy; 2024 Donormates. All rights reserved.
-                    </p>
-                </footer>
+               
             </main>
         </div>
     </div>

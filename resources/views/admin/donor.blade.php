@@ -6,6 +6,7 @@
     <title>Admin Dashboard</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
     <link rel="stylesheet" href="{{ asset('admin/css/donor.css') }}">
 </head>
 <body>
@@ -45,7 +46,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sign out
+                            Keluar
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
@@ -320,6 +321,9 @@
         }
     </script>
     <script>
+
+
+
        document.addEventListener("DOMContentLoaded", function () {
     var sidebarToggle = document.querySelector(".navbar-toggler");
     var sidebar = document.querySelector("#sidebarMenu");
@@ -356,7 +360,6 @@
         }
     });
 
-    ]]
 });
 
     </script>

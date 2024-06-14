@@ -13,6 +13,7 @@
             href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"
         />
         <link rel="stylesheet" href="{{ asset('admin/css/berita.css') }}" />
+        <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -58,7 +59,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}"
        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-       Sign out
+       Keluar
     </a>
     
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -114,12 +115,7 @@
                         
                     </table>
 
-                    <footer class="footer">
-                        <hr />
-                        <p class="copyright">
-                            &copy; 2024 Donormates. All rights reserved.
-                        </p>
-                    </footer>
+                   
                 </main>
             </div>
         </div>

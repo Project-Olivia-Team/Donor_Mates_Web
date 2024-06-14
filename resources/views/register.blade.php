@@ -6,6 +6,7 @@
     <title>Register</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('guest/css/login.css') }}">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 </head>
 <body>
     <div class="container-fluid">
@@ -54,7 +55,7 @@
                                 <option value="AB-">AB-</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary">Register</button>
+                        <button type="submit" class="btn btn-block ">Register</button>
                         <p class="text-center mt-3">
                             Sudah punya akun? <a href="{{ route('login') }}">Login</a>
                         </p>

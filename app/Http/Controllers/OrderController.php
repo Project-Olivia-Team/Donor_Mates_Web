@@ -1,6 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -38,24 +36,40 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Bukti pembayaran berhasil diunggah');
     }
 
-    public function adminOrders()
+    // Method to list all orders for admin
+    public function adminIndex()
     {
-        // Only fetch orders that are waiting for approval
-        $orders = Order::where('status', 'Waiting for approval')->with('merchandise')->get();
-
+        $orders = Order::with('merchandise', 'user')->get();
         return view('admin.orders', compact('orders'));
     }
 
-    public function approveOrder(Request $request)
+    // Method to update the status of an order
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'order_id' => 'required|exists:orders,id',
+            'status' => 'required|string',
         ]);
 
-        $order = Order::find($request->order_id);
-        $order->status = 'Dikirim';
-        $order->save();
+        $order = Order::findOrFail($id);
 
-        return redirect()->back()->with('success', 'Pesanan telah disetujui dan dikirim.');
+        // Check if proof of payment is uploaded before allowing status update
+        if ($order->proof_of_payment || $request->status == 'Cancelled') {
+            $order->status = $request->status;
+            $order->save();
+
+            return redirect()->route('admin.orders')->with('success', 'Order status updated successfully.');
+        }
+
+        return redirect()->route('admin.orders')->with('error', 'Proof of payment required to confirm the order.');
+    }
+
+    // Method to delete an order
+    public function destroy($id)
+    {
+        $order = Order::findOrFail($id);
+        $order->delete();
+
+        return redirect()->route('admin.orders')->with('success', 'Order deleted successfully.');
     }
 }
+ ?>

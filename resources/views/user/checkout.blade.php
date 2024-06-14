@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('user/css/checkout.css') }}" />
+    <link rel="stylesheet" href="{{ asset('user/css/keranjang.css') }}" />
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 </head>
 <body>
 <header class="header fixed-top">
@@ -94,7 +95,10 @@
                 <label for="total">Total Bayar</label>
                 <input type="number" class="form-control" id="total" name="total" value="{{ $total }}" readonly>
             </div>
-            <button type="submit" class="btn btn-primary">Checkout</button>
+            <div class="text-right">
+                <button type="submit" class="btn merah">Checkout</button>
+            </div>
+           
         </form>
     </div>
    

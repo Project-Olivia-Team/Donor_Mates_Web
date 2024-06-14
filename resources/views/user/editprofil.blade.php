@@ -6,6 +6,7 @@
     <title>Edit Profil Pengguna</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('user/css/profil.css') }}">
+    <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
 </head>
 <body>
     <header class="header fixed-top">
