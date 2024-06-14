@@ -22,7 +22,7 @@ class AdminOrderController extends Controller
         ]);
 
         $order = Order::find($request->order_id);
-        $order->status = 'Approved';
+        $order->status = 'Dikirim';
         $order->save();
 
         return redirect()->route('admin.orders')->with('success', 'Pesanan berhasil diapprove');
