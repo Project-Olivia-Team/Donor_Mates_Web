@@ -44,7 +44,7 @@
     <div class="hero-section">
         <div class="content text-left">
             <h1>Ikut Donor Darah, Bantu Selamatkan Nyawa</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sunt, dolor nesciunt quia dolores hic asperiores molestiae sering quo consectetur officia illum aliquid libero, doloribus, nostrum reiciendis ab! Sapiente accusantium ipsam inventore suscipit explicabo! Esse sint dicta libero deserunt eaque amet autem! Enim error quod autem.</p>
+            <p>Setiap tetes darah yang Anda sumbangkan bisa menyelamatkan nyawa. Donor darah tidak hanya membantu mereka yang sedang dalam kondisi kritis akibat kecelakaan atau operasi, tetapi juga sangat penting bagi pasien yang menderita penyakit kronis seperti kanker, thalassemia, dan hemofilia. Dengan menjadi pendonor darah, Anda berperan langsung dalam menjaga kesehatan dan kehidupan banyak orang.</p>
             <a href="#"><button>See more</button></a>
         </div>
     </div>
@@ -106,7 +106,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Cukup istirahat sebelum menyumbangkan darah</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Pastikan Anda mendapatkan istirahat yang cukup sebelum menyumbangkan darah. Tidur yang baik dan cukup, sekitar 7-9 jam, membantu tubuh Anda mempersiapkan diri dengan baik. Ini memastikan Anda dalam kondisi optimal dan mengurangi risiko pusing atau lemas setelah donor darah.</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Makan tiga jam sebelum menyumbangkan darah</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Pilih makanan yang kaya akan zat besi seperti daging tanpa lemak, kacang-kacangan, atau sayuran berdaun hijau. Hindari makanan berlemak karena dapat mempengaruhi kualitas darah yang disumbangkan. Makan sebelumnya membantu menjaga kadar gula darah dan energi selama proses donor.</p>
                     </div>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Cukup Minum Setelah dan sesudah menyumbangkan darah</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Pastikan Anda cukup minum air sebelum dan sesudah menyumbangkan darah. Hidrasi yang baik membantu menjaga volume darah dan mencegah dehidrasi. Minumlah setidaknya 2 gelas air sebelum donor dan beberapa gelas lagi setelahnya untuk membantu tubuh Anda pulih lebih cepat.</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +130,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Beristirahat setelah mendonorkan darah</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Luangkan waktu untuk beristirahat setelah mendonorkan darah. Duduk atau berbaring selama 15-20 menit setelah donor untuk memastikan tubuh Anda menyesuaikan diri. Hindari aktivitas berat dan angkat beban selama beberapa jam setelah donor untuk mencegah pusing atau kelelahan.</p>
                     </div>
                 </div>
             </div>
@@ -138,7 +138,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Sebelum menyumbangkan darah, lakukan konsultasi kesehatan dengan dokter, terutama jika Anda memiliki kondisi medis tertentu atau sedang mengonsumsi obat-obatan. Dokter akan membantu memastikan Anda dalam kondisi baik dan aman untuk mendonorkan darah.</p>
                     </div>
                 </div>
             </div>
@@ -146,7 +146,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-                        <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi magnam fuga dolore ratione ea repellendus quasi eum vel inventore labore!</p>
+                        <p class="card-text">Setelah mendonorkan darah, jika Anda merasa tidak enak badan atau mengalami gejala yang tidak biasa, segera konsultasikan dengan dokter. Dokter akan memberikan nasihat dan perawatan yang diperlukan untuk memastikan Anda pulih dengan baik dan siap untuk donor darah berikutnya.</p>
                     </div>
                 </div>
             </div>

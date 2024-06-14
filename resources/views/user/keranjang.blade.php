@@ -6,6 +6,8 @@
     <title>Keranjang Belanja</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ asset('user/css/keranjang.css') }}">
+
 </head>
 <body>
     <header class="header fixed-top">
