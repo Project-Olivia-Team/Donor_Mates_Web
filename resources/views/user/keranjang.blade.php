@@ -107,7 +107,7 @@
         </table>
         @if($cartItems->count() > 0)
             <div class="text-right">
-                <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+                <a href="{{ route('user.checkout') }}" class="btn btn-primary">Checkout</a>
             </div>
         @endif
     </div>

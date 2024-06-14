@@ -155,13 +155,23 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
     Route::get('/keranjang', [CartController::class, 'showCart'])->name('user.keranjang');
-    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('user.cart.remove');
-    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('user.cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+    
+    //checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+    Route::get('/order', [OrderController::class, 'index'])->name('user.order');
+    Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
 });
 
 
 Route::get('/merchandise', [MerchandiseController::class, 'index'])->name('merchandise');
-Route::get('/keranjang', [CartController::class, 'index'])->name('user.keranjang');
 Route::get('/pesanan', [OrderController::class, 'index'])->name('user.pesanan');
 Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('user.checkout');
+Route::post('/checkout/process', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+
+

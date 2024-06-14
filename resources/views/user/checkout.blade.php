@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('user/css/checkout.css') }}" />
 </head>
+<body>
 <header class="header fixed-top">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -30,7 +32,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMerchandise">
                             <a class="dropdown-item" href="{{ route('user.merchandise') }}">Merchandise</a>
                             <a class="dropdown-item" href="{{ route('user.keranjang') }}">Keranjang</a>
-                            <a class="dropdown-item" href="{{ route('user.pesanan') }}">Pesanan</a>
+                            <a class="dropdown-item" href="{{ route('user.order') }}">Pesanan</a>
                         </div>
                     </li>
                     <li class="nav-item @if(request()->routeIs('user.berita')) active @endif">

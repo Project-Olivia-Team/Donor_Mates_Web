@@ -39,8 +39,13 @@ class CartController extends Controller
     {
         $user_id = Auth::id();
         $cartItems = Cart::where('user_id', $user_id)->with('merchandise')->get();
+        $total = $cartItems->sum(function($item) {
+            return $item->merchandise->harga * $item->quantity;
+        });
 
-        return view('user.keranjang', compact('cartItems'));
+        session()->put('total', $total); // Simpan total di session
+
+        return view('user.keranjang', compact('cartItems', 'total'));
     }
 
     public function removeFromCart($id)

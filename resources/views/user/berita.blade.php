@@ -33,7 +33,7 @@
                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMerchandise">
                               <a class="dropdown-item" href="{{ route('user.merchandise') }}">Merchandise</a>
                               <a class="dropdown-item" href="{{ route('user.keranjang') }}">Keranjang</a>
-                              <a class="dropdown-item" href="{{ route('user.pesanan') }}">Pesanan</a>
+                              <a class="dropdown-item" href="{{ route('user.order') }}">Pesanan</a>
                           </div>
                       </li>
                       <li class="nav-item @if(request()->routeIs('user.berita')) active @endif">
