@@ -25,14 +25,17 @@
             >
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand ml-2" href="#">LOGO</a>
+            
+            <a class="navbar-brand ml-2" href="#">
+                <img src="{{ asset('img/putih.png') }}" width="80px"/>
+            </a>
         </nav>
         <div class="container-fluid">
             <div class="row">
                 <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
@@ -43,7 +46,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.stock') }}">Manajemen Stock Darah</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item active">
                             <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
                         </li>
                         <li class="nav-item">
@@ -94,7 +97,7 @@
                                 <td>{{ $berita->tanggal_upload }}</td>
                                 <td>{{ $berita->penulis }}</td>
                                 <td class="btn-aksi">
-                                    <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $berita->berita_id }})">Edit</button>
+                                    <button class="btn btn-primary btn-sm" onclick="openEditModal({{ $berita->berita_id }})">Edit</button>
                                     
                                     <form action="{{ route('admin.berita.destroy', $berita->berita_id) }}" method="POST" style="display: inline;">
                                         @csrf
@@ -153,8 +156,8 @@
                 <textarea class="form-control" id="isi_berita" name="isi_berita" rows="5" placeholder="Masukkan isi berita"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <div class="text-right"> <button type="submit" class="btn merah">Tambah</button></div>
+               
               </div>
         </form>
         </div>
@@ -201,8 +204,10 @@
                         <textarea class="form-control" id="editIsiBerita" name="isi_berita" rows="5"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                       <div class="text-right">
+                        <button type="submit" class="btn merah">Edit</button>
+                       </div>
+
                     </div>
                 </form>
             </div>
@@ -244,7 +249,18 @@
     }
 </script>
 
-<!-- Di dalam tag <script> Anda -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+var sidebarToggle = document.querySelector(".navbar-toggler");
+var sidebar = document.querySelector("#sidebarMenu");
+
+sidebarToggle.addEventListener("click", function () {
+    sidebar.classList.toggle("show");
+});
+
+
+});
+</script>
 
 
 

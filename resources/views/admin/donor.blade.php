@@ -13,19 +13,21 @@
         <button class="navbar-toggler" type="button" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand ml-2" href="#">LOGO</a>
+        <a class="navbar-brand ml-2" href="#">
+            <img src="{{ asset('img/putih.png') }}" width="80px"/>
+        </a>
     </nav>
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ route('admin.donor') }}">Manajemen Donor Darah</a>
                     </li>
                     <li class="nav-item">
@@ -39,14 +41,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}"
-   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-   Sign out
-</a>
-
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
-
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Sign out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </nav>
@@ -54,7 +54,6 @@
                 <h2>Manajemen Donor Darah</h2>
                 <div class="tambah-search d-flex justify-content-between mb-3">
                     <button class="btn merah" data-toggle="modal" data-target="#tambahDonorModal">Tambah pendonor</button>
-                    
                 </div>
                 <table id="userTable" class="table table-bordered">
                     <thead>
@@ -72,17 +71,150 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $donor->nama }}</td>
                             <td>{{ $donor->gol_darah }}</td>
-                            <td>{{ $donor->created_at->format('d/m/Y') }}</td>
+                            <td>{{ $donor->tgl_donor }}</td>
+
                             <td class="btn-aksi">
-                                <button class="btn btn-primary btn-sm" onclick="openEditModal({{ $donor->donor_id }})">Edit</button>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editDonorModal{{ $donor->donor_id }}">Edit</button>
                                 <form action="{{ route('admin.donor.destroy', $donor->donor_id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn merah btn-sm">Delete</button>
                                 </form>
-                                <a href="{{ route('admin.donor.detail', $donor->donor_id) }}"><button class="btn btn-success btn-sm">Detail</button></a>
+                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailDonorModal{{ $donor->donor_id }}">Detail</button>
                             </td>
                         </tr>
+
+                        <!-- Modal Edit Donor -->
+                        <div class="modal fade" id="editDonorModal{{ $donor->donor_id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form action="{{ route('admin.donor.update', $donor->donor_id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel">Edit Donor</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="edit_NIK">NIK</label>
+                                                <input type="text" class="form-control" id="edit_NIK" name="NIK" value="{{ $donor->NIK }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_nama">Nama</label>
+                                                <input type="text" class="form-control" id="edit_nama" name="nama" value="{{ $donor->nama }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_alamat">Alamat</label>
+                                                <textarea class="form-control" id="edit_alamat" name="alamat" required>{{ $donor->alamat }}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_tgl_lahir">Tanggal Lahir</label>
+                                                <input type="date" class="form-control" id="edit_tgl_lahir" name="tgl_lahir" value="{{ $donor->tgl_lahir }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_umur">Umur</label>
+                                                <input type="number" class="form-control" id="edit_umur" name="umur" value="{{ $donor->umur }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_berat_badan">Berat Badan</label>
+                                                <input type="number" class="form-control" id="edit_berat_badan" name="berat_badan" value="{{ $donor->berat_badan }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_gol_darah">Golongan Darah</label>
+                                                <select class="form-control" id="edit_gol_darah" name="gol_darah" required>
+                                                    <option value="">Pilih Golongan Darah</option>
+                                                    <option value="A+" {{ $donor->gol_darah == 'A+' ? 'selected' : '' }}>A+</option>
+                                                    <option value="A-" {{ $donor->gol_darah == 'A-' ? 'selected' : '' }}>A-</option>
+                                                    <option value="B+" {{ $donor->gol_darah == 'B+' ? 'selected' : '' }}>B+</option>
+                                                    <option value="B-" {{ $donor->gol_darah == 'B-' ? 'selected' : '' }}>B-</option>
+                                                    <option value="O+" {{ $donor->gol_darah == 'O+' ? 'selected' : '' }}>O+</option>
+                                                    <option value="O-" {{ $donor->gol_darah == 'O-' ? 'selected' : '' }}>O-</option>
+                                                    <option value="AB+" {{ $donor->gol_darah == 'AB+' ? 'selected' : '' }}>AB+</option>
+                                                    <option value="AB-" {{ $donor->gol_darah == 'AB-' ? 'selected' : '' }}>AB-</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_riwayat">Riwayat</label>
+                                                <textarea class="form-control" id="edit_riwayat" name="riwayat" required>{{ $donor->riwayat }}</textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="edit_no_hp">No HP</label>
+                                                <input type="text" class="form-control" id="edit_no_hp" name="no_hp" value="{{ $donor->no_hp }}" required>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="edit_tgl_donor">Tanggal Donor</label>
+                                              <input type="date" class="form-control" id="edit_tgl_donor" name="tgl_donor" value="{{ $donor->tgl_donor }}" required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer no-print">
+                                            <div class="text-right"><button type="submit" class="btn merah">Edit</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal Detail Donor -->
+                        <div class="modal fade" id="detailDonorModal{{ $donor->donor_id }}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="detailModalLabel">Detail Donor</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="nama">Nama</label>
+                                            <input type="text" class="form-control" id="nama" value="{{ $donor->nama }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="NIK">NIK</label>
+                                            <input type="text" class="form-control" id="NIK" value="{{ $donor->NIK }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="alamat">Alamat</label>
+                                            <input type="text" class="form-control" id="alamat" value="{{ $donor->alamat }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tgl_lahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control" id="tgl_lahir" value="{{ $donor->tgl_lahir }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="umur">Umur</label>
+                                            <input type="number" class="form-control" id="umur" value="{{ $donor->umur }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="berat_badan">Berat Badan</label>
+                                            <input type="number" class="form-control" id="berat_badan" value="{{ $donor->berat_badan }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gol_darah">Golongan Darah</label>
+                                            <input type="text" class="form-control" id="gol_darah" value="{{ $donor->gol_darah }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="riwayat">Riwayat</label>
+                                            <input type="text" class="form-control" id="riwayat" value="{{ $donor->riwayat }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="no_hp">No HP</label>
+                                            <input type="text" class="form-control" id="no_hp" value="{{ $donor->no_hp }}" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="tgl_donor">Tanggal Donor</label>
+                                            <input type="date" class="form-control" id="tgl_donor" value="{{ $donor->tgl_donor }}" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer no-print">
+                                        <div class="text-right"><button type="button" class="btn merah" onclick="handlePrint('{{ $donor->donor_id }}')">Cetak</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
@@ -129,7 +261,17 @@
                         </div>
                         <div class="form-group">
                             <label for="gol_darah">Golongan Darah</label>
-                            <input type="text" class="form-control" id="gol_darah" name="gol_darah" required>
+                            <select class="form-control" id="gol_darah" name="gol_darah" required>
+                                <option value="">Pilih Golongan Darah</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="riwayat">Riwayat</label>
@@ -141,76 +283,11 @@
                         </div>
                         <div class="form-group">
                           <label for="tgl_donor">Tanggal Donor</label>
-                          <input type="date" class="form-control" id="tgl_lahir" name="tgl_donor" required>
+                          <input type="date" class="form-control" id="tgl_donor" name="tgl_donor" required>
                       </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Edit Donor -->
-    <div class="modal fade" id="editDonorModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form id="editDonorForm" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Donor</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="edit_NIK">NIK</label>
-                            <input type="text" class="form-control" id="edit_NIK" name="NIK" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_nama">Nama</label>
-                            <input type="text" class="form-control" id="edit_nama" name="nama" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_alamat">Alamat</label>
-                            <textarea class="form-control" id="edit_alamat" name="alamat" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_tgl_lahir">Tanggal Lahir</label>
-                            <input type="date" class="form-control" id="edit_tgl_lahir" name="tgl_lahir" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_umur">Umur</label>
-                            <input type="number" class="form-control" id="edit_umur" name="umur" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_berat_badan">Berat Badan</label>
-                            <input type="number" class="form-control" id="edit_berat_badan" name="berat_badan" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_gol_darah">Golongan Darah</label>
-                            <input type="text" class="form-control" id="edit_gol_darah" name="gol_darah" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_riwayat">Riwayat</label>
-                            <textarea class="form-control" id="edit_riwayat" name="riwayat" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_no_hp">No HP</label>
-                            <input type="text" class="form-control" id="edit_no_hp" name="no_hp" required>
-                        </div>
-                        <div class="form-group">
-                          <label for="edit_tgl_donor">Tanggal Donor</label>
-                          <input type="date" class="form-control" id="edit_tgl_donor" name="tgl_donor" required>
-                      </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <div class="modal-footer no-print">
+                        <div class="text-right"><button type="submit" class="btn merah">Simpan</button></div>
                     </div>
                 </form>
             </div>
@@ -226,21 +303,59 @@
             $('#userTable').DataTable();
         });
 
-        function openEditModal(donor_id) {
-            $.get('/admin/donor/' + donor_id + '/edit', function(data) {
-                $('#edit_NIK').val(data.NIK);
-                $('#edit_nama').val(data.nama);
-                $('#edit_alamat').val(data.alamat);
-                $('#edit_tgl_lahir').val(data.tgl_lahir);
-                $('#edit_umur').val(data.umur);
-                $('#edit_berat_badan').val(data.berat_badan);
-                $('#edit_gol_darah').val(data.gol_darah);
-                $('#edit_riwayat').val(data.riwayat);
-                $('#edit_no_hp').val(data.no_hp);
-                $('#editDonorForm').attr('action', '/admin/donor/' + donor_id);
-                $('#editDonorModal').modal('show');
+        function handlePrint(donor_id) {
+            var printContents = document.querySelector('#detailDonorModal' + donor_id + ' .modal-body').innerHTML;
+            var originalContents = document.body.innerHTML;
+
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+
+            window.location.reload();
+        }
+    </script>
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+    var sidebarToggle = document.querySelector(".navbar-toggler");
+    var sidebar = document.querySelector("#sidebarMenu");
+
+    sidebarToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("show");
+    });
+
+    $.ajax({
+        url: "{{ route('admin.getDonorData') }}",
+        method: 'GET',
+        success: function(data) {
+            var ctx = document.getElementById('donorChart').getContext('2d');
+            var donorChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.map(item => item.month + ' ' + item.year),
+                    datasets: [{
+                        label: 'Jumlah Pendonor',
+                        data: data.map(item => item.count),
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
         }
+    });
+
+    
+});
+
     </script>
 </body>
 </html>

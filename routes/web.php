@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
 
 // Halaman Utama
 Route::get('/', function () {
@@ -119,6 +120,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('admin.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.index');
+    Route::get('/admin/get-donor-data', [DonorController::class, 'getDonorData'])->name('admin.getDonorData');
+
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users');
     Route::get('/admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
     Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
@@ -151,7 +155,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add.to.cart');
     Route::get('/keranjang', [CartController::class, 'showCart'])->name('user.keranjang');
-    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('user.cart.remove');
+    Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('user.cart.update');
 });
 
+
+Route::get('/merchandise', [MerchandiseController::class, 'index'])->name('merchandise');
+Route::get('/keranjang', [CartController::class, 'index'])->name('user.keranjang');
+Route::get('/pesanan', [OrderController::class, 'index'])->name('user.pesanan');
+Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

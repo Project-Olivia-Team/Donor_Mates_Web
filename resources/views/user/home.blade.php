@@ -20,38 +20,54 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('user.home') }}">Home</a>
+                        <li class="nav-item @if(request()->routeIs('user.home')) active @endif">
+                            <a class="nav-link" href="{{ route('user.home') }}">Beranda</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.pendaftaran')) active @endif">
                             <a class="nav-link" href="{{ route('user.pendaftaran') }}">Pendaftaran</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.merchandise') }}">Merchandise</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('user.merchandise') || request()->routeIs('user.keranjang') || request()->routeIs('user.pesanan')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMerchandise" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Toko
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMerchandise">
+                                <a class="dropdown-item" href="{{ route('user.merchandise') }}">Merchandise</a>
+                                <a class="dropdown-item" href="{{ route('user.keranjang') }}">Keranjang</a>
+                                <a class="dropdown-item" href="{{ route('user.pesanan') }}">Pesanan</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.berita')) active @endif">
                             <a class="nav-link" href="{{ route('user.berita') }}">Berita</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('profile') || request()->routeIs('user.profile.edit')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profil
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profil Saya</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </header>
+    
 
     <div class="hero-section">
         <div class="content text-left">
             <h1>Ikut Donor Darah, Bantu Selamatkan Nyawa</h1>
-            <p>Setiap tetes darah yang Anda sumbangkan bisa menyelamatkan nyawa. Donor darah tidak hanya membantu mereka yang sedang dalam kondisi kritis akibat kecelakaan atau operasi, tetapi juga sangat penting bagi pasien yang menderita penyakit kronis seperti kanker, thalassemia, dan hemofilia. Dengan menjadi pendonor darah, Anda berperan langsung dalam menjaga kesehatan dan kehidupan banyak orang.</p>
-            <a href="#"><button>See more</button></a>
+            <p>Setiap tetes darah yang Anda sumbangkan bisa menjadi penyelamat bagi nyawa seseorang, memberikan harapan dan kesempatan baru untuk hidup. Donor darah bukan hanya tindakan kemanusiaan, tetapi juga bentuk nyata dari solidaritas dan kepedulian sosial. Bergabunglah dengan gerakan donor darah, dengan donor darah kita bisa menciptakan perubahan besar dalam kehidupan banyak orang.</p>
         </div>
     </div>
 
     <!-- Manfaat Donor Darah -->
     <div class="container manfaat-donor my-5 text-center">
-        <h2>Apa sih manfaat donor darah?</h2>
+        <h2>Apa Sih Manfaat Donor Darah?</h2>
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-3 col-sm-6 mb-4">
                 <div class="card manfaat-card">
@@ -106,7 +122,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Cukup istirahat sebelum menyumbangkan darah</h5>
-                        <p class="card-text">Pastikan Anda mendapatkan istirahat yang cukup sebelum menyumbangkan darah. Tidur yang baik dan cukup, sekitar 7-9 jam, membantu tubuh Anda mempersiapkan diri dengan baik. Ini memastikan Anda dalam kondisi optimal dan mengurangi risiko pusing atau lemas setelah donor darah.</p>
+                        <p class="card-text">Pastikan Anda mendapatkan tidur yang cukup sebelum mendonorkan darah. Istirahat yang cukup membantu menjaga kondisi tubuh tetap fit dan siap untuk mendonorkan darah.</p>
                     </div>
                 </div>
             </div>
@@ -114,15 +130,15 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Makan tiga jam sebelum menyumbangkan darah</h5>
-                        <p class="card-text">Pilih makanan yang kaya akan zat besi seperti daging tanpa lemak, kacang-kacangan, atau sayuran berdaun hijau. Hindari makanan berlemak karena dapat mempengaruhi kualitas darah yang disumbangkan. Makan sebelumnya membantu menjaga kadar gula darah dan energi selama proses donor.</p>
+                        <p class="card-text">Disarankan untuk makan makanan bergizi setidaknya tiga jam sebelum mendonorkan darah. Hindari makanan berlemak tinggi dan pastikan Anda merasa kenyang namun nyaman.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card tips-card">
                     <div class="card-body">
-                        <h5 class="card-title">Cukup Minum Setelah dan sesudah menyumbangkan darah</h5>
-                        <p class="card-text">Pastikan Anda cukup minum air sebelum dan sesudah menyumbangkan darah. Hidrasi yang baik membantu menjaga volume darah dan mencegah dehidrasi. Minumlah setidaknya 2 gelas air sebelum donor dan beberapa gelas lagi setelahnya untuk membantu tubuh Anda pulih lebih cepat.</p>
+                        <h5 class="card-title">Cukup minum sebelum dan sesudah menyumbangkan darah</h5>
+                        <p class="card-text">Minum banyak air sebelum dan setelah donor darah untuk menjaga tubuh tetap terhidrasi. Hal ini membantu proses pemulihan dan mencegah terjadinya dehidrasi.</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +146,7 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Beristirahat setelah mendonorkan darah</h5>
-                        <p class="card-text">Luangkan waktu untuk beristirahat setelah mendonorkan darah. Duduk atau berbaring selama 15-20 menit setelah donor untuk memastikan tubuh Anda menyesuaikan diri. Hindari aktivitas berat dan angkat beban selama beberapa jam setelah donor untuk mencegah pusing atau kelelahan.</p>
+                        <p class="card-text">Setelah mendonorkan darah, duduk dan istirahat selama beberapa menit. Jangan terburu-buru melakukan aktivitas fisik yang berat untuk memberi waktu bagi tubuh memulihkan diri.</p>
                     </div>
                 </div>
             </div>
@@ -138,15 +154,15 @@
                 <div class="card tips-card">
                     <div class="card-body">
                         <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-                        <p class="card-text">Sebelum menyumbangkan darah, lakukan konsultasi kesehatan dengan dokter, terutama jika Anda memiliki kondisi medis tertentu atau sedang mengonsumsi obat-obatan. Dokter akan membantu memastikan Anda dalam kondisi baik dan aman untuk mendonorkan darah.</p>
+                        <p class="card-text">Sebelum mendonorkan darah, konsultasikan kondisi kesehatan Anda dengan dokter. Pastikan Anda dalam kondisi sehat dan memenuhi syarat untuk dapat melakukan donorkan darah.</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                 <div class="card tips-card">
                     <div class="card-body">
-                        <h5 class="card-title">Konsultasi kesehatan dengan dokter</h5>
-                        <p class="card-text">Setelah mendonorkan darah, jika Anda merasa tidak enak badan atau mengalami gejala yang tidak biasa, segera konsultasikan dengan dokter. Dokter akan memberikan nasihat dan perawatan yang diperlukan untuk memastikan Anda pulih dengan baik dan siap untuk donor darah berikutnya.</p>
+                        <h5 class="card-title">Hindari aktivitas berat setelah donor darah</h5>
+                        <p class="card-text">Setelah mendonorkan darah, hindari aktivitas berat atau olahraga yang berlebihan selama setidaknya 24 jam. Tunggu terlebih dahulu dan biarkan tubuh Anda normal pulih sepenuhnya.</p>
                     </div>
                 </div>
             </div>
@@ -154,7 +170,7 @@
     </div>
 
     <div class="container sponsor my-5 text-center">
-        <h2>Sponsored by</h2>
+        <h2>Disponsori Oleh</h2>
         <div class="row justify-content-center">
             <div class="col-md-2 col-sm-4 mb-4">
                 <div class="sponsor-logo">
@@ -190,13 +206,14 @@
             <div class="row">
                 <div class="col-md-6 footer-column">
                     <img src="../../img/putih.png" width="80px"/>
-                    <p>Lorem ipsum dolor sit amet consectetur. Tortor enim non congue vitae ut. In nullam etiam scelerisque tristique. Malesuada sit gravida at rutrum. Pulvinar ac eu donec nisl cras ut.</p>
+                    <p>Jl. Buring, No 19, Malang 65112, Jawa Timur, Indonesia.</p>
+                    <p>Hubungi kami untuk informasi lebih lanjut atau jika Anda memiliki pertanyaan terkait donor darah.</p>
                     <p><i class="fa fa-envelope"></i> donormates@gmail.com</p>
                     <p><i class="fa fa-whatsapp"></i> +62 7893 2213 876</p>
                     <p><i class="fa fa-phone"></i> +62 7892 6782 234</p>
                 </div>
                 <div class="col-md-6 footer-column text-right">
-                    <h4>SOCIAL MEDIA</h4>
+                    <h4>MEDIA SOSIAL</h4>
                     <div class="social-media">
                         <a href="#"><i class="fa fa-instagram"></i></a>
                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -278,4 +295,3 @@
       </script>
     </body>
   </html>
-  

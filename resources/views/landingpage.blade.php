@@ -289,34 +289,31 @@
     <!-- Footer -->
     <footer class="footer mt-5">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6 footer-column">
-            <h4>LOGO</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur. Tortor enim non congue
-              vitae ut. In nullam etiam scelerisque tristique. Malesuada sit
-              gravida at rutrum. Pulvinar ac eu donec nisl cras ut.
-            </p>
-            <p><i class="fa fa-envelope"></i> donormates@gmail.com</p>
-            <p><i class="fa fa-whatsapp"></i> +62 7893 2213 876</p>
-            <p><i class="fa fa-phone"></i> +62 7892 6782 234</p>
+          <div class="row">
+              <div class="col-md-6 footer-column">
+                  <img src="../../img/putih.png" width="80px"/>
+                  <p>Jl. Buring, No 19, Malang 65112, Jawa Timur, Indonesia.</p>
+                  <p>Hubungi kami untuk informasi lebih lanjut atau jika Anda memiliki pertanyaan terkait donor darah.</p>
+                  <p><i class="fa fa-envelope"></i> donormates@gmail.com</p>
+                  <p><i class="fa fa-whatsapp"></i> +62 7893 2213 876</p>
+                  <p><i class="fa fa-phone"></i> +62 7892 6782 234</p>
+              </div>
+              <div class="col-md-6 footer-column text-right">
+                  <h4>MEDIA SOSIAL</h4>
+                  <div class="social-media">
+                      <a href="#"><i class="fa fa-instagram"></i></a>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-youtube-play"></i></a>
+                  </div>
+              </div>
           </div>
-          <div class="col-md-6 footer-column text-right">
-            <h4>SOCIAL MEDIA</h4>
-            <div class="social-media">
-              <a href="#"><i class="fa fa-instagram"></i></a>
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-youtube-play"></i></a>
-            </div>
+          <div class="row">
+              <div class="col-12 text-center">
+                  <p class="mb-0">&copy; 2024 Donormates. All rights reserved.</p>
+              </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-12 text-center">
-            <p class="mb-0">&copy; 2024 Donormates. All rights reserved.</p>
-          </div>
-        </div>
       </div>
-    </footer>
+  </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

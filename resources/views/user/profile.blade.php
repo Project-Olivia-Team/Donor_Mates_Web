@@ -19,20 +19,36 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.home') }}">Home</a>
+                        <li class="nav-item @if(request()->routeIs('user.home')) active @endif">
+                            <a class="nav-link" href="{{ route('user.home') }}">Beranda</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.pendaftaran')) active @endif">
                             <a class="nav-link" href="{{ route('user.pendaftaran') }}">Pendaftaran</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('user.merchandise') }}">Merchandise</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('user.merchandise') || request()->routeIs('user.keranjang') || request()->routeIs('user.pesanan')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMerchandise" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Toko
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMerchandise">
+                                <a class="dropdown-item" href="{{ route('user.merchandise') }}">Merchandise</a>
+                                <a class="dropdown-item" href="{{ route('user.keranjang') }}">Keranjang</a>
+                                <a class="dropdown-item" href="{{ route('user.pesanan') }}">Pesanan</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item @if(request()->routeIs('user.berita')) active @endif">
                             <a class="nav-link" href="{{ route('user.berita') }}">Berita</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('profile') }}">Profil</a>
+                        <li class="nav-item dropdown @if(request()->routeIs('profile') || request()->routeIs('user.profile.edit')) active @endif">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profil
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownProfil">
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">Profil Saya</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -42,25 +58,19 @@
 
     <div class="container profile-container mt-5 pt-5">
         <div class="row">
-            <div class="col-md-4 text-center">
-                @if(isset($lastDonor))
-                    <p class="mt-3"><b>Riwayat Donor :</b> {{ $lastDonor->tgl_donor->format('d M Y') }}</p>
-                @else
-                    <p class="mt-3"><b>Riwayat Donor :</b> Belum pernah donor</p>
-                @endif
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <button class="btn btn-edit-profile">Sign Out</button>
-                </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
-            <div class="col-md-8">
+           
+            <div class="col-md-12">
                 <div class="profile-info">
                     <h4>Profil</h4>
+
+                    @if(isset($lastDonor))
+                    <p class="mt-3 text-center"><b>Riwayat Donor :</b> {{ $lastDonor->tgl_donor->format('d M Y') }}</p>
+                @else
+                    <p class="mt-3 text-center"><b>Riwayat Donor :</b> Belum pernah donor</p>
+                @endif
                     <form>
                         <div class="form-group">
-                            <label for="name">Nama</label>
+                            <label for="name">Nama Lengkap</label>
                             <input type="text" class="form-control" id="name" value="{{ $user->name }}" readonly />
                         </div>
                         <div class="form-group">
@@ -90,14 +100,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 footer-column">
-                    <h4>LOGO</h4>
-                    <p>Lorem ipsum dolor sit amet consectetur. Tortor enim non congue vitae ut. In nullam etiam scelerisque tristique. Malesuada sit gravida at rutrum. Pulvinar ac eu donec nisl cras ut.</p>
+                    <img src="../../img/putih.png" width="80px"/>
+                    <p>Jl. Buring, No 19, Malang 65112, Jawa Timur, Indonesia.</p>
+                    <p>Hubungi kami untuk informasi lebih lanjut atau jika Anda memiliki pertanyaan terkait donor darah.</p>
                     <p><i class="fa fa-envelope"></i> donormates@gmail.com</p>
                     <p><i class="fa fa-whatsapp"></i> +62 7893 2213 876</p>
                     <p><i class="fa fa-phone"></i> +62 7892 6782 234</p>
                 </div>
                 <div class="col-md-6 footer-column text-right">
-                    <h4>SOCIAL MEDIA</h4>
+                    <h4>MEDIA SOSIAL</h4>
                     <div class="social-media">
                         <a href="#"><i class="fa fa-instagram"></i></a>
                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -105,8 +116,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-column">
-                <p class="copyright">&copy; 2024 Donormates. All rights reserved.</p>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Donormates. All rights reserved.</p>
+                </div>
             </div>
         </div>
     </footer>

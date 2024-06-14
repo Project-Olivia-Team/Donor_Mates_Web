@@ -96,7 +96,7 @@ body {
 .berita-container {
     max-width: 800px;
     margin: 0 auto;
-    padding-top: 80px; /* to accommodate fixed header */
+    padding-top: 80px;
 }
 
 .berita-title {

@@ -13,14 +13,16 @@
         <button class="navbar-toggler" type="button" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand ml-2" href="#">LOGO</a>
+        <a class="navbar-brand ml-2" href="#">
+            <img src="{{ asset('img/putih.png') }}" width="80px"/>
+        </a>
     </nav>
     <div class="container-fluid">
         <div class="row">
             <nav id="sidebarMenu" class="col-lg-3 sidebar bg-danger">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.index') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.users') }}">Manajemen User</a>
@@ -34,7 +36,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.berita') }}">Manajemen Berita</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="{{ route('admin.merchandise') }}">Manajemen Merchandise</a>
                     </li>
                     <li class="nav-item">
@@ -75,11 +77,11 @@
                             <td>{{ $merchandise->harga }}</td>
                             <td>{{ $merchandise->stock }}</td>
                             <td>
-                                <button class="btn btn-warning btn-sm" onclick="openEditModal({{ $merchandise->merchandise_id }})">Edit</button>
+                                <button class="btn btn-primary btn-sm" onclick="openEditModal({{ $merchandise->merchandise_id }})">Edit</button>
                                 <form action="{{ route('admin.merchandise.destroy', $merchandise->merchandise_id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
+                                    <button type="submit" class="btn merah btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -125,8 +127,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <div class="text-right">                    <button type="submit" class="btn merah">Tambah</button></div>
+
                 </div>
             </form>
         </div>
@@ -170,8 +172,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                    <div class="text-right">                    <button type="submit" class="btn merah">Edit</button></div>
+
                 </div>
             </form>
         </div>
@@ -199,6 +201,33 @@
     });
 }
 
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+	var sidebarToggle = document.querySelector(".navbar-toggler");
+	var sidebar = document.querySelector("#sidebarMenu");
+
+	sidebarToggle.addEventListener("click", function () {
+		sidebar.classList.toggle("show");
+	});
+
+	var table = $("#userTable").DataTable({
+		dom: 't<"bottom"p>',
+		pageLength: 10,
+		paging: true,
+		info: false,
+	});
+
+	$("#customSearchButton").on("click", function () {
+		table.search($("#customSearchBox").val()).draw();
+	});
+
+	$("#customSearchBox").on("keypress", function (e) {
+		if (e.which === 13) {
+			table.search(this.value).draw();
+		}
+	});
+});
     </script>
 </body>
 </html>
