@@ -37,4 +37,25 @@ class OrderController extends Controller
 
         return redirect()->back()->with('success', 'Bukti pembayaran berhasil diunggah');
     }
+
+    public function adminOrders()
+    {
+        // Only fetch orders that are waiting for approval
+        $orders = Order::where('status', 'Waiting for approval')->with('merchandise')->get();
+
+        return view('admin.orders', compact('orders'));
+    }
+
+    public function approveOrder(Request $request)
+    {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id',
+        ]);
+
+        $order = Order::find($request->order_id);
+        $order->status = 'Dikirim';
+        $order->save();
+
+        return redirect()->back()->with('success', 'Pesanan telah disetujui dan dikirim.');
+    }
 }

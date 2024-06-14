@@ -12,6 +12,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminOrderController;
+
 
 // Halaman Utama
 Route::get('/', function () {
@@ -193,4 +195,9 @@ Route::middleware(['auth'])->group(function () {
     // Routes  Order
     Route::get('/order', [OrderController::class, 'index'])->name('user.order');
     Route::post('/order/upload', [OrderController::class, 'uploadProof'])->name('order.upload');
+});
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders');
+    Route::post('/admin/orders/approve', [AdminOrderController::class, 'approveOrder'])->name('admin.orders.approve');
 });
