@@ -8,8 +8,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('user/css/home.css') }}">
     <link rel="icon" href="{{ asset('img/merah.png') }}" type="image/x-icon" >
+    <style>
+        .chat-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 1000;
+            max-width: 400px;
+        }
+
+        .chat-popup .chatbot-header {
+            background-color:  #ae252c;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .chat-popup .chatbot-content {
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .chat-popup .chatbot-footer {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .chat-popup .chatbot-footer input[type=text] {
+            width: 190px;
+            padding: 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 3px;
+        }
+
+        .chat-popup .chatbot-footer .send-btn {
+            width: 60px;
+            padding: 10px;
+            background-color:  #ae252c;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            
+        }
+
+        .chat-popup .chat-message {
+            margin: 10px 0;
+        }
+
+        .chat-popup .bot-message {
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .chat-popup .user-message {
+            background-color: #cfe9ba;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <header class="header fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -57,8 +126,8 @@
             </nav>
         </div>
     </header>
-    
 
+    <!-- Content Section -->
     <div class="hero-section">
         <div class="content text-left">
             <h1>Ikut Donor Darah, Bantu Selamatkan Nyawa</h1>
@@ -107,8 +176,8 @@
             <div class="box-container">
                 @foreach($stocks as $stock)
                 <div class="box">
-                    <p >{{ $stock->golongan_darah }}</p>
-                    <p >{{ $stock->stock }}</p>
+                    <p>{{ $stock->golongan_darah }}</p>
+                    <p>{{ $stock->stock }}</p>
                 </div>
                 @endforeach
             </div>
@@ -170,6 +239,7 @@
         </div>
     </div>
 
+    <!-- Sponsor -->
     <div class="container sponsor my-5 text-center">
         <h2>Disponsori Oleh</h2>
         <div class="row justify-content-center">
@@ -233,43 +303,39 @@
     <!-- Chatbot -->
     <button onclick="toggleChatbot()" class="chatbot-button">
         <i class="fa fa-comments"></i>
-      </button>
-      <div id="chatbot" class="chat-popup">
+    </button>
+    <div id="chatbot" class="chat-popup">
         <div class="chatbot-header">
-          <h2 class="text-center">Matesbot</h2>
-          <span class="close" onclick="toggleChatbot()">&times;</span>
+            <h2 class="text-center">Matesbot</h2>
+            <span class="close" onclick="toggleChatbot()">&times;</span>
         </div>
-        <div class="chatbot-content">
-          <div class="chat-message bot-message">
-            Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
-          </div>
+        <div class="chatbot-content" id="chatbot-content">
+            <div class="chat-message bot-message">
+                Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
+            </div>
         </div>
         <div class="chatbot-footer">
-          <input
-            type="text"
-            placeholder="Ketikkan pesanmu..."
-            id="chat-input"
-            name="message"
-            required
-          />
-          <button type="button" class="send-btn" onclick="sendMessage()">
-            Kirim
-          </button>
+            <form id="chatbot-form" action="{{ route('chatbot.send') }}" method="POST">
+                @csrf
+                <input type="text" placeholder="Ketikkan pesanmu..." id="chat-input" name="message" required />
+                <button type="submit" class="send-btn">Kirim</button>
+            </form>
         </div>
-      </div>
-  
-      <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-      <script>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
         function toggleChatbot() {
-          var chatbot = document.getElementById("chatbot");
-          chatbot.style.display =
-            chatbot.style.display === "block" ? "none" : "block";
+            var chatbot = document.getElementById("chatbot");
+            chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
         }
-  
-        async function sendMessage() {
+
+        document.getElementById('chatbot-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
             const inputField = document.getElementById("chat-input");
             const message = inputField.value;
             if (message.trim() === "") return;
@@ -280,17 +346,30 @@
             displayMessage(response, "bot-message");
 
             inputField.value = "";
+        });
+
+        async function getChatbotResponse(message) {
+            const response = await fetch('{{ route('chatbot.send') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            return data.choices[0].message.content.trim();
         }
 
         function displayMessage(message, className) {
-            const chatContent = document.getElementById("chatbot-content");
+            const chatContent = document.querySelector(".chatbot-content");
             const messageElement = document.createElement("div");
-            messageElement.className = chat-message ${className};
+            messageElement.className = `chat-message ${className}`;
             messageElement.textContent = message;
             chatContent.appendChild(messageElement);
             chatContent.scrollTop = chatContent.scrollHeight;
-
         }
-      </script>
-    </body>
-  </html>
+    </script>
+</body>
+</html>

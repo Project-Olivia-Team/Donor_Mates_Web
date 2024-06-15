@@ -212,4 +212,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::match(['get', 'post'], '/botman', 'App\Http\Controllers\BotManController@handle');
+
+use App\Http\Controllers\ChatbotController;
+
+Route::post('/chatbot', [ChatbotController::class, 'sendMessage'])->name('chatbot.send');

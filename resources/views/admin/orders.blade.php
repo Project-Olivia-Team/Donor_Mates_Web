@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Manajemen Pesanan</title>
+    <title>Admin - Manajemen Order</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="{{ asset('admin/css/merchandise.css') }}">
@@ -41,7 +41,7 @@
                     <a class="nav-link" href="{{ route('admin.merchandise') }}">Manajemen Merchandise</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ route('admin.orders') }}">Manajemen Pesanan</a>
+                    <a class="nav-link" href="{{ route('admin.orders') }}">Manajemen Order</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
@@ -55,7 +55,7 @@
             </ul>
         </nav>
         <main class="main-content col-lg-9 ml-sm-auto col-md-9 pt-3 px-4">
-            <h2>Manajemen Pesanan</h2>
+            <h2>Manajemen Order</h2>
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -124,7 +124,7 @@
                                                     <option value="Pending" {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
                                                     <option value="Waiting for approval" {{ $order->status == 'Waiting for approval' ? 'selected' : '' }}>Waiting for approval</option>
                                                     <option value="Processing" {{ $order->status == 'Processing' ? 'selected' : '' }}>Processing</option>
-                                                    <option value="Shipped" {{ $order->status == 'Shipped' ? 'selected' : '' }}></option>
+                                                    <option value="Shipped" {{ $order->status == 'Shipped' ? 'selected' : '' }}>Shipped</option>
                                                     <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
                                                     <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                                                 </select>
