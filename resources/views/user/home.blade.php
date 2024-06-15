@@ -269,29 +269,27 @@
             chatbot.style.display === "block" ? "none" : "block";
         }
   
-        function sendMessage() {
-          var inputField = document.getElementById("chat-input");
-          var message = inputField.value;
-          if (message.trim() !== "") {
-            var chatContent = document.querySelector(".chatbot-content");
-  
-            var userMessage = document.createElement("div");
-            userMessage.className = "chat-message user-message";
-            userMessage.textContent = message;
-            chatContent.appendChild(userMessage);
-  
+        async function sendMessage() {
+            const inputField = document.getElementById("chat-input");
+            const message = inputField.value;
+            if (message.trim() === "") return;
+
+            displayMessage(message, "user-message");
+
+            const response = await getChatbotResponse(message);
+            displayMessage(response, "bot-message");
+
             inputField.value = "";
-  
-            setTimeout(function () {
-              var botMessage = document.createElement("div");
-              botMessage.className = "chat-message bot-message";
-              botMessage.textContent =
-                "Terima kasih atas pesan Anda. Kami akan segera merespons.";
-              chatContent.appendChild(botMessage);
-  
-              chatContent.scrollTop = chatContent.scrollHeight;
-            }, 1000);
-          }
+        }
+
+        function displayMessage(message, className) {
+            const chatContent = document.getElementById("chatbot-content");
+            const messageElement = document.createElement("div");
+            messageElement.className = chat-message ${className};
+            messageElement.textContent = message;
+            chatContent.appendChild(messageElement);
+            chatContent.scrollTop = chatContent.scrollHeight;
+
         }
       </script>
     </body>

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +23,7 @@ class CreateDonorsTable extends Migration
             $table->string('gol_darah');
             $table->text('riwayat');
             $table->string('no_hp');
+            $table->date('tgl_donor');
             $table->timestamps();
         });
     }
@@ -38,3 +38,4 @@ class CreateDonorsTable extends Migration
         Schema::dropIfExists('donors');
     }
 }
+ ?>

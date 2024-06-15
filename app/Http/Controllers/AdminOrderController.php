@@ -9,7 +9,7 @@ class AdminOrderController extends Controller
 {
     public function index()
     {
-        // Mengambil semua pesanan
+      
         $orders = Order::with('merchandise')->get();
 
         return view('admin.orders', compact('orders'));

@@ -20,11 +20,11 @@ class CartController extends Controller
                         ->first();
 
         if ($cartItem) {
-            // If item already exists in the cart, update the quantity
+            
             $cartItem->quantity += $request->quantity;
             $cartItem->save();
         } else {
-            // Otherwise, create a new cart item
+           
             Cart::create([
                 'user_id' => Auth::id(),
                 'merchandise_id' => $request->merchandise_id,
@@ -43,7 +43,7 @@ class CartController extends Controller
             return $item->merchandise->harga * $item->quantity;
         });
 
-        session()->put('total', $total); // Simpan total di session
+        session()->put('total', $total); 
 
         return view('user.keranjang', compact('cartItems', 'total'));
     }

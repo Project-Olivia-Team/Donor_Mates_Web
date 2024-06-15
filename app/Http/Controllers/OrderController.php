@@ -8,7 +8,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        // Use eager loading to ensure merchandise is loaded with orders
+        
         $orders = Order::where('user_id', Auth::id())->with('merchandise')->get();
 
         return view('user.order', compact('orders'));
@@ -36,14 +36,14 @@ class OrderController extends Controller
         return redirect()->back()->with('success', 'Bukti pembayaran berhasil diunggah');
     }
 
-    // Method to list all orders for admin
+   
     public function adminIndex()
     {
         $orders = Order::with('merchandise', 'user')->get();
         return view('admin.orders', compact('orders'));
     }
 
-    // Method to update the status of an order
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -52,7 +52,7 @@ class OrderController extends Controller
 
         $order = Order::findOrFail($id);
 
-        // Check if proof of payment is uploaded before allowing status update
+      
         if ($order->proof_of_payment || $request->status == 'Cancelled') {
             $order->status = $request->status;
             $order->save();
@@ -63,7 +63,7 @@ class OrderController extends Controller
         return redirect()->route('admin.orders')->with('error', 'Proof of payment required to confirm the order.');
     }
 
-    // Method to delete an order
+   
     public function destroy($id)
     {
         $order = Order::findOrFail($id);

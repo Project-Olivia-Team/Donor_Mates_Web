@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     <style>
         body {
-            background-color: white; /* Ubah latar belakang menjadi putih */
+            background-color: white; 
             font-family: 'Nunito', sans-serif;
             margin: 0;
             padding: 0;

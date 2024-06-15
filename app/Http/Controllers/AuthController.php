@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Method untuk menampilkan form register
+    
     public function registerForm()
     {
         return view('register');
     }
 
-    // Method untuk menangani proses registrasi
+   
     public function register(Request $request)
     {
         $request->validate([
@@ -28,9 +28,9 @@ class AuthController extends Controller
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Menggunakan Hash Bcrypt
+            'password' => Hash::make($request->password), 
             'bloodType' => $request->bloodType,
-            'role' => 'user', // Default role
+            'role' => 'user', 
         ]);
 
         $user->save();
@@ -38,13 +38,13 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Registration successful. Please login.');
     }
 
-    // Method untuk menampilkan form login
+    
     public function loginForm()
     {
         return view('login');
     }
 
-    // Method untuk menangani proses login
+   
     public function login(Request $request)
     {
         $request->validate([
@@ -58,9 +58,9 @@ class AuthController extends Controller
 
         if ($user) {
             if (!Hash::check($credentials['password'], $user->password)) {
-                // Password tidak cocok dengan hash, periksa apakah password belum di-hash
+                
                 if ($user->password === $credentials['password']) {
-                    // Hash password dan simpan ke database
+                   
                     $user->password = Hash::make($credentials['password']);
                     $user->save();
                 } else {
@@ -71,7 +71,7 @@ class AuthController extends Controller
             Auth::login($user, $request->remember);
             $request->session()->regenerate();
 
-            // Redirect berdasarkan role user
+           
             if ($user->role == 'admin') {
                 return redirect()->intended('/admin/dashboard');
             } else {
@@ -82,7 +82,7 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
     }
 
-    // Method untuk logout
+   
     public function logout()
     {
         Auth::logout();

@@ -199,7 +199,7 @@
         $('#edit_nama_produk').val(data.nama_produk);
         $('#edit_harga').val(data.harga);
         $('#edit_stock').val(data.stock);
-        $('#edit_deskripsi').val(data.deskripsi); // Menambahkan deskripsi
+        $('#edit_deskripsi').val(data.deskripsi); 
         $('#editMerchandiseForm').attr('action', '/admin/merchandise/' + merchandise_id);
         $('#editMerchandiseModal').modal('show');
     });

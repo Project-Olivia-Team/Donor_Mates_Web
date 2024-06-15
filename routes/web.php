@@ -104,6 +104,8 @@ Route::put('/admin/donor/{donor}', [DonorController::class, 'update'])->name('ad
 Route::get('/admin/donor/{id}/edit', [DonorController::class, 'edit'])->name('admin.donor.edit');
 Route::delete('/admin/donor/{donor_id}', [DonorController::class, 'destroy'])->name('admin.donor.destroy');
 Route::get('/admin/donor/{id}/detail', [DonorController::class, 'show'])->name('admin.donor.detail');
+Route::get('/admin/donor/data', [DonorController::class, 'getDonorData'])->name('admin.getDonorData');
+
 
 // Routes Stock
 Route::get('/admin/stock', [StockController::class, 'index'])->name('admin.stock');
