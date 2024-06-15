@@ -107,6 +107,7 @@ Route::get('/admin/donor/{id}/detail', [DonorController::class, 'show'])->name('
 Route::get('/admin/donor/data', [DonorController::class, 'getDonorData'])->name('admin.getDonorData');
 
 
+
 // Routes Stock
 Route::get('/admin/stock', [StockController::class, 'index'])->name('admin.stock');
 Route::post('/admin/stock/store', [StockController::class, 'store'])->name('admin.stock.store');

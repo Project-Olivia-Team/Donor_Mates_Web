@@ -101,7 +101,7 @@ class DonorController extends Controller
 
     public function getDonorData()
     {
-        $donorData = Donor::selectRaw('YEAR(created_at) as year, MONTH(created_at) as month, COUNT(*) as count')
+        $donorData = Donor::selectRaw('YEAR(tgl_donor) as year, MONTH(tgl_donor) as month, COUNT(*) as count')
             ->groupBy('year', 'month')
             ->get()
             ->map(function($item) {
@@ -115,4 +115,3 @@ class DonorController extends Controller
         return response()->json($donorData);
     }
 }
- ?>
