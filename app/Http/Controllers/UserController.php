@@ -37,7 +37,7 @@ class UserController extends Controller
             'role' => $request->role,
         ]);
     
-        return redirect()->route('admin.users')->with('success', 'User created successfully.');
+        return redirect()->route('admin.users')->with('success', 'User berhasil ditambahkan.');
     }
     
 
@@ -60,13 +60,13 @@ class UserController extends Controller
     
         $user->save();
     
-        return redirect()->route('admin.users')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users')->with('success', 'User berhasil diupdate.');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.users')->with('success', 'User berhasil dihapus.');
     }
 
     public function profile()

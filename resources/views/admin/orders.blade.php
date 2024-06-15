@@ -122,11 +122,11 @@
                                                 <label for="status">Status</label>
                                                 <select class="form-control" id="status" name="status" required>
                                                     <option value="Pending" {{ $order->status == 'Pending' ? 'selected' : '' }}>Pending</option>
-                                                    <option value="Waiting for approval" {{ $order->status == 'Waiting for approval' ? 'selected' : '' }}>Menunggu verifikasi</option>
-                                                    <option value="Processing" {{ $order->status == 'Processing' ? 'selected' : '' }}>Diproses</option>
-                                                    <option value="Shipped" {{ $order->status == 'Shipped' ? 'selected' : '' }}>Dikirim</option>
-                                                    <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Terkirim</option>
-                                                    <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Dibatalkan</option>
+                                                    <option value="Waiting for approval" {{ $order->status == 'Waiting for approval' ? 'selected' : '' }}>Waiting for approval</option>
+                                                    <option value="Processing" {{ $order->status == 'Processing' ? 'selected' : '' }}>Processing</option>
+                                                    <option value="Shipped" {{ $order->status == 'Shipped' ? 'selected' : '' }}></option>
+                                                    <option value="Delivered" {{ $order->status == 'Delivered' ? 'selected' : '' }}>Delivered</option>
+                                                    <option value="Cancelled" {{ $order->status == 'Cancelled' ? 'selected' : '' }}>Cancelled</option>
                                                 </select>
                                             </div>
                                             <div class="text-right">

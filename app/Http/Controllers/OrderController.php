@@ -57,10 +57,10 @@ class OrderController extends Controller
             $order->status = $request->status;
             $order->save();
 
-            return redirect()->route('admin.orders')->with('success', 'Order status updated successfully.');
+            return redirect()->route('admin.orders')->with('success', 'Status order berhasil diperbarui');
         }
 
-        return redirect()->route('admin.orders')->with('error', 'Proof of payment required to confirm the order.');
+        return redirect()->route('admin.orders')->with('error', 'Bukti pembayaran diperlukan');
     }
 
    
@@ -69,7 +69,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
         $order->delete();
 
-        return redirect()->route('admin.orders')->with('success', 'Order deleted successfully.');
+        return redirect()->route('admin.orders')->with('success', 'Order berhasil dihapus');
     }
 }
  ?>

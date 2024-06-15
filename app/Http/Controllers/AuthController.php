@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         $user->save();
 
-        return redirect('/login')->with('success', 'Registration successful. Please login.');
+        return redirect('/login')->with('success', 'Registrasi berhasil, Anda bisa login');
     }
 
     
@@ -64,7 +64,7 @@ class AuthController extends Controller
                     $user->password = Hash::make($credentials['password']);
                     $user->save();
                 } else {
-                    return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+                    return back()->withErrors(['email' => 'Data yang anda masukkan tidak sesuai.']);
                 }
             }
 
@@ -79,7 +79,7 @@ class AuthController extends Controller
             }
         }
 
-        return back()->withErrors(['email' => 'The provided credentials do not match our records.']);
+        return back()->withErrors(['email' => 'Data yang anda masukkan tidak sesuai.']);
     }
 
    
