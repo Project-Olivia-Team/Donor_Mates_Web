@@ -300,76 +300,85 @@
         </div>
     </footer>
 
-    <!-- Chatbot -->
-    <button onclick="toggleChatbot()" class="chatbot-button">
-        <i class="fa fa-comments"></i>
-    </button>
-    <div id="chatbot" class="chat-popup">
-        <div class="chatbot-header">
-            <h2 class="text-center">Matesbot</h2>
-            <span class="close" onclick="toggleChatbot()">&times;</span>
-        </div>
-        <div class="chatbot-content" id="chatbot-content">
-            <div class="chat-message bot-message">
-                Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
-            </div>
-        </div>
-        <div class="chatbot-footer">
-            <form id="chatbot-form" action="{{ route('chatbot.send') }}" method="POST">
-                @csrf
-                <input type="text" placeholder="Ketikkan pesanmu..." id="chat-input" name="message" required />
-                <button type="submit" class="send-btn">Kirim</button>
-            </form>
+   <!-- Chatbot -->
+   <button onclick="toggleChatbot()" class="chatbot-button">
+    <i class="fa fa-comments"></i>
+</button>
+<div id="chatbot" class="chat-popup">
+    <div class="chatbot-header">
+        <h2 class="text-center">Matesbot</h2>
+        <span class="close" onclick="toggleChatbot()">&times;</span>
+    </div>
+    <div class="chatbot-content" id="chatbot-content">
+        <div class="chat-message bot-message">
+            Selamat datang di Donormates Chatbot! Apa yang bisa saya bantu?
         </div>
     </div>
+    <div class="chatbot-footer">
+        <form id="chatbot-form">
+            @csrf
+            <input type="text" placeholder="Ketikkan pesanmu..." id="chat-input" name="message" required />
+            <button type="submit" class="send-btn">Kirim</button>
+        </form>
+    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <script>
-        function toggleChatbot() {
-            var chatbot = document.getElementById("chatbot");
-            chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
-        }
+<script>
+    function toggleChatbot() {
+        var chatbot = document.getElementById("chatbot");
+        chatbot.style.display = chatbot.style.display === "block" ? "none" : "block";
+    }
 
-        document.getElementById('chatbot-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
+    document.getElementById('chatbot-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-            const inputField = document.getElementById("chat-input");
-            const message = inputField.value;
-            if (message.trim() === "") return;
+        const inputField = document.getElementById("chat-input");
+        const message = inputField.value;
+        if (message.trim() === "") return;
 
-            displayMessage(message, "user-message");
+        displayMessage(message, "user-message");
 
+        try {
             const response = await getChatbotResponse(message);
             displayMessage(response, "bot-message");
+        } catch (error) {
+            displayMessage("Mohon maaf openAI sedang limit, mohon coba beberapa saat lagi.", "bot-message");
+        }
 
-            inputField.value = "";
+        inputField.value = "";
+    });
+
+    async function getChatbotResponse(message) {
+        const response = await fetch('{{ route('chatbot.send') }}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ message: message })
         });
 
-        async function getChatbotResponse(message) {
-            const response = await fetch('{{ route('chatbot.send') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({ message: message })
-            });
-
-            const data = await response.json();
-            return data.choices[0].message.content.trim();
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Unknown error occurred");
         }
 
-        function displayMessage(message, className) {
-            const chatContent = document.querySelector(".chatbot-content");
-            const messageElement = document.createElement("div");
-            messageElement.className = `chat-message ${className}`;
-            messageElement.textContent = message;
-            chatContent.appendChild(messageElement);
-            chatContent.scrollTop = chatContent.scrollHeight;
-        }
-    </script>
+        const data = await response.json();
+        return data.choices[0].message.content.trim();
+    }
+
+    function displayMessage(message, className) {
+        const chatContent = document.querySelector(".chatbot-content");
+        const messageElement = document.createElement("div");
+        messageElement.className = `chat-message ${className}`;
+        messageElement.textContent = message;
+        chatContent.appendChild(messageElement);
+        chatContent.scrollTop = chatContent.scrollHeight;
+    }
+</script>
 </body>
 </html>
